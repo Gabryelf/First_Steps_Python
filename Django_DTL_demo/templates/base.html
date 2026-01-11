@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .header { background: blue; color: white; padding: 15px; }
+        .content { padding: 20px; }
+        .footer { background: gray; color: white; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Шапка сайта</h1>
+        {% include 'includes/menu.html' %}
+    </div>
+
+    <div class="content">
+        {% block content %}
+        <!-- Сюда вставляется контент страниц -->
+        {% endblock %}
+    </div>
+
+
+    <div class="footer">
+        <p>Подвал сайта</p>
+    </div>
+</body>
+</html>

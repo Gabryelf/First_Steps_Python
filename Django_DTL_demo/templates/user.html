@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Пользователь{% endblock %}
+
+{% block content %}
+{% if user_name %}
+    <h2>Привет, {{ user_name }}!</h2>
+{% else %}
+    <h2>Привет, гость!</h2>
+{% endif %}
+
+{% if age >= 18 %}
+    <p>Вам доступен взрослый контент</p>
+{% else %}
+    <p>Вам доступен детский контент</p>
+{% endif %}
+{% endblock %}

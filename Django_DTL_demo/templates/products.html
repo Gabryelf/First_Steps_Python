@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Товары{% endblock %}
+
+{% block content %}
+<h2>Наши товары:</h2>
+
+<table border="1">
+    <tr>
+        <th>Название</th>
+        <th>Цена</th>
+    </tr>
+    
+    {% for product in products %}
+    <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }} руб.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p>Всего товаров: {{ products|length }}</p>
+{% endblock %}

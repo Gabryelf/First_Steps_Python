@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<h2>Привет, {{ user_name }}!</h2>
+
+<p>Тебе {{ age }} лет.</p>
+<p>Товар стоит {{ price }} руб.</p>
+
+<h3>Список продуктов:</h3>
+<ul>
+    <li>{{ items.0 }}</li>  <!-- Первый элемент -->
+    <li>{{ items.1 }}</li>  <!-- Второй элемент -->
+    <li>{{ items.2 }}</li>  <!-- Третий элемент -->
+</ul>
+{% endblock %}
