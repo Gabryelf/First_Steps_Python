@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - Django Шаблонизация{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4 mb-4">🎨 Django Template Language (DTL)</h1>
+    <p class="lead mb-4">Изучаем шаблонизацию Django шаг за шагом</p>
+    
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>📦 Блоки</h3>
+                    <p>Наследование и переопределение</p>
+                    <a href="/blocks/" class="btn btn-primary">Изучить →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>🔤 Переменные</h3>
+                    <p>Работа с данными в шаблонах</p>
+                    <a href="/variables/" class="btn btn-primary">Изучить →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>🎛️ Фильтры</h3>
+                    <p>Преобразование данных</p>
+                    <a href="/filters/" class="btn btn-primary">Изучить →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>🔄 Теги</h3>
+                    <p>Логика в шаблонах</p>
+                    <a href="/tags/" class="btn btn-primary">Изучить →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>🧩 Включения</h3>
+                    <p>Модульные компоненты</p>
+                    <a href="/includes/" class="btn btn-primary">Изучить →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>🧬 Наследование</h3>
+                    <p>Повторное использование</p>
+                    <a href="/inheritance/" class="btn btn-primary">Изучить →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ user.name }}</h5>
+        <p class="card-text">
+            {% if user.is_admin %}
+            <span class="badge bg-danger">Админ</span>
+            {% else %}
+            <span class="badge bg-secondary">Пользователь</span>
+            {% endif %}
+        </p>
+    </div>
+</div>

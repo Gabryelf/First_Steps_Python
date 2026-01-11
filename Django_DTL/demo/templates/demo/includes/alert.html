@@ -1,0 +1,11 @@
+<div class="alert alert-{{ type|default:'info' }} alert-dismissible fade show" role="alert">
+    {% if icon %}
+    <i class="{{ icon }} me-2"></i>
+    {% endif %}
+
+    <strong>{{ title|default:'Внимание!' }}</strong> {{ message }}
+
+    {% if dismissible %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    {% endif %}
+</div>

@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+
+{% block title %}Переменные - Django Шаблонизация{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<style>
+    .var-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 15px 0;
+        border-left: 4px solid;
+    }
+    
+    .string { border-left-color: #4e73df; }
+    .number { border-left-color: #1cc88a; }
+    .list { border-left-color: #f6c23e; }
+    .dict { border-left-color: #e74a3b; }
+    .bool { border-left-color: #6f42c1; }
+    
+    .code-inline {
+        background: #f8f9fc;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: monospace;
+        color: #d63384;
+    }
+    
+    .result {
+        background: #e7f3ff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        font-family: monospace;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <h1 class="display-5 mb-4">🔤 Работа с переменными в Django</h1>
+        
+        <!-- Строковая переменная -->
+        <div class="var-card string">
+            <h3>📝 Строка (String)</h3>
+            <p><strong>Переменная:</strong> <code class="code-inline">string_var</code></p>
+            <p><strong>Значение:</strong> <code>"{{ string_var }}"</code></p>
+            <p><strong>Использование в шаблоне:</strong></p>
+            <div class="code-block">
+{{ string_var }}
+            </div>
+            <p><strong>Результат:</strong></p>
+            <div class="result">{{ string_var }}</div>
+        </div>
+        
+        <!-- Числовые переменные -->
+        <div class="var-card number">
+            <h3>🔢 Числа (Integer & Float)</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Целое число:</strong></p>
+                    <p><code class="code-inline">number_var</code> = {{ number_var }}</p>
+                    <div class="code-block">
+{{ number_var }} + 10 = {{ number_var|add:10 }}
+                    </div>
+                    <div class="result">{{ number_var }} + 10 = {{ number_var|add:10 }}</div>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Дробное число:</strong></p>
+                    <p><code class="code-inline">float_var</code> = {{ float_var }}</p>
+                    <div class="code-block">
+{{ float_var }} × 2 = {{ float_var|mul:2 }}
+                    </div>
+                    <div class="result">{{ float_var }} × 2 = {{ float_var|mul:2 }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Список -->
+        <div class="var-card list">
+            <h3>📋 Список (List)</h3>
+            <p><strong>Переменная:</strong> <code class="code-inline">list_var</code></p>
+            <p><strong>Значение:</strong> <code>["Python", "Django", "HTML", "CSS"]</code></p>
+            
+            <h5>Обращение по индексу:</h5>
+            <div class="code-block">
+{{ list_var.0 }}  ← Первый элемент<br>
+{{ list_var.1 }}  ← Второй элемент<br>
+{{ list_var|last }}  ← Последний элемент (фильтр)
+            </div>
+            <div class="result">
+                {{ list_var.0 }}<br>
+                {{ list_var.1 }}<br>
+                {{ list_var|last }}
+            </div>
+            
+            <h5 class="mt-3">Длина списка:</h5>
+            <div class="code-block">
+В списке {{ list_var|length }} элемента
+            </div>
+            <div class="result">В списке {{ list_var|length }} элемента</div>
+        </div>
+        
+        <!-- Словарь -->
+        <div class="var-card dict">
+            <h3>🗂️ Словарь (Dictionary)</h3>
+            <p><strong>Переменная:</strong> <code class="code-inline">dict_var</code></p>
+            <p><strong>Значение:</strong> <code>{'name': 'Иван', 'age': 25, 'city': 'Москва'}</code></p>
+            
+            <h5>Обращение по ключу:</h5>
+            <div class="code-block">
+Имя: {{ dict_var.name }}<br>
+Возраст: {{ dict_var.age }}<br>
+Город: {{ dict_var.city }}
+            </div>
+            <div class="result">
+                Имя: {{ dict_var.name }}<br>
+                Возраст: {{ dict_var.age }}<br>
+                Город: {{ dict_var.city }}
+            </div>
+            
+            <h5 class="mt-3">Альтернативный синтаксис:</h5>
+            <div class="code-block">
+Имя: {{ dict_var.name }} = {{ dict_var.name }}<br>
+Имя: {{ dict_var.name }} = {{ dict_var.name }}
+            </div>
+        </div>
+        
+        <!-- Булевы значения -->
+        <div class="var-card bool">
+            <h3>✅❌ Булевы значения (Boolean)</h3>
+            <p><strong>Переменная:</strong> <code class="code-inline">bool_var</code></p>
+            <p><strong>Значение:</strong> <code>{{ bool_var }}</code></p>
+            
+            <div class="code-block">
+{% if bool_var %}
+Переменная bool_var равна True
+{% else %}
+Переменная bool_var равна False
+{% endif %}
+            </div>
+            <div class="result">
+                {% if bool_var %}
+                Переменная bool_var равна True
+                {% else %}
+                Переменная bool_var равна False
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- None -->
+        <div class="var-card">
+            <h3>🚫 None (Пустое значение)</h3>
+            <p><strong>Переменная:</strong> <code class="code-inline">none_var</code></p>
+            <p><strong>Значение:</strong> <code>{{ none_var }}</code></p>
+            
+            <div class="code-block">
+{% if none_var %}
+Переменная не пустая
+{% else %}
+Переменная пустая (None)
+{% endif %}
+            </div>
+            <div class="result">
+                {% if none_var %}
+                Переменная не пустая
+                {% else %}
+                Переменная пустая (None)
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <!-- Боковая панель -->
+        <div class="demo-card">
+            <h4>🎯 Основные типы переменных</h4>
+            
+            <h5 class="mt-4">📝 Строки</h5>
+            <ul>
+                <li>Текст в кавычках</li>
+                <li><code>{{ "текст" }}</code></li>
+            </ul>
+            
+            <h5>🔢 Числа</h5>
+            <ul>
+                <li>Целые: <code>42</code></li>
+                <li>Дробные: <code>3.14</code></li>
+            </ul>
+            
+            <h5>📋 Списки</h5>
+            <ul>
+                <li>По индексу: <code>list.0</code></li>
+                <li>Длина: <code>list|length</code></li>
+            </ul>
+            
+            <h5>🗂️ Словари</h5>
+            <ul>
+                <li>По ключу: <code>dict.key</code></li>
+                <li>Или: <code>dict['key']</code></li>
+            </ul>
+            
+            <h5>✅ Булевы</h5>
+            <ul>
+                <li><code>True</code> / <code>False</code></li>
+                <li>Для условий <code>{% verbatim %}{% if %}{% endverbatim %}</code></li>
+            </ul>
+            
+            <h5>🚫 None</h5>
+            <ul>
+                <li>Пустое значение</li>
+                <li>Проверка: <code>{% verbatim %}{% if var %}{% endverbatim %}</code></li>
+            </ul>
+        </div>
+        
+        <div class="demo-card bg-light">
+            <h5>💡 Совет</h5>
+            <p>Все переменные передаются из view в шаблон через <strong>context</strong> словарь:</p>
+            <div class="code-block">
+def view(request):
+    context = {
+        'var1': 'значение',
+        'var2': 123,
+    }
+    return render(request, 'template.html', context)
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

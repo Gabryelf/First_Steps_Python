@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+<!-- ⭐ ПЕРЕОПРЕДЕЛЕНИЕ БЛОКА TITLE -->
+{% block title %}{{ page_title }} - Django Шаблонизация{% endblock %}
+
+<!-- ⭐ ДОБАВЛЕНИЕ СТИЛЕЙ К БЛОКУ STYLES -->
+{% block styles %}
+{{ block.super }}  <!-- ⬅️ СОХРАНЯЕМ РОДИТЕЛЬСКИЕ СТИЛИ -->
+<style>
+    .block-demo {
+        border-left: 5px solid var(--primary);
+        padding-left: 20px;
+        margin: 30px 0;
+    }
+    
+    .block-example {
+        background: #e3f2fd;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+</style>
+{% endblock %}
+
+<!-- ⭐ ПОЛНОЕ ПЕРЕОПРЕДЕЛЕНИЕ HEADER -->
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow">
+    <div class="container">
+        <span class="navbar-brand">
+            📦 <strong>Демо: Блоки</strong>
+        </span>
+        <a href="/" class="btn btn-light btn-sm">← На главную</a>
+    </div>
+</nav>
+{% endblock %}
+
+<!-- ⭐ ГЛАВНОЕ СОДЕРЖИМОЕ -->
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <h1 class="display-5 mb-4">{{ page_title }}</h1>
+        
+        <!-- Пример 1: Простое переопределение -->
+        <div class="block-demo">
+            <h3>1. Простое переопределение блока</h3>
+            <div class="block-example">
+                <h4>Родительский шаблон (base.html):</h4>
+                <div class="code-block">
+
+                </div>
+                
+                <h4>Дочерний шаблон (blocks.html):</h4>
+                <div class="code-block">
+
+                </div>
+                
+                <h4>Результат:</h4>
+                <div class="alert alert-info">
+                    Заголовок вкладки: "<strong>{{ page_title }} - Django Шаблонизация</strong>"
+                </div>
+            </div>
+        </div>
+        
+        <!-- Пример 2: Добавление к родительскому -->
+        <div class="block-demo">
+            <h3>2. Добавление к содержимому родителя</h3>
+            <div class="block-example">
+                <h4>Код с {{ block.super }}:</h4>
+                <div class="code-block">
+
+{{ block.super }}  ← СОХРАНЯЕМ РОДИТЕЛЬСКИЕ СТИЛИ
+<style>
+    .my-extra-style { color: red; }
+</style>
+{% endblock %}
+                </div>
+                <p><code>{{ block.super }}</code> вставляет содержимое блока из родительского шаблона</p>
+            </div>
+        </div>
+        
+        <!-- Пример 3: Пустой блок -->
+        <div class="block-demo">
+            <h3>3. Пустой блок</h3>
+            <div class="block-example">
+                <div class="code-block">
+{% block scripts %}{% endblock %}
+                </div>
+                <p>Блок остается пустым, если дочерний шаблон его не переопределяет</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <!-- Боковая панель -->
+        <div class="demo-card">
+            <h4>📌 Ключевые моменты</h4>
+            <ul class="list-unstyled">
+                <li class="mb-2">✅ <strong>Блоки</strong> определяются в родительском шаблоне</li>
+                <li class="mb-2">✅ <strong>Переопределение</strong> происходит в дочерних</li>
+                <li class="mb-2">✅ <code>{{ block.super }}</code> для добавления к родителю</li>
+                <li class="mb-2">✅ Блоки могут быть <strong>пустыми</strong></li>
+                <li>✅ Можно создавать <strong>любое количество</strong> блоков</li>
+            </ul>
+            
+            <hr>
+            
+            <h5>🕒 Время генерации:</h5>
+            <p class="text-muted">{{ current_time|date:"H:i:s" }}</p>
+            
+            <h5>📊 Статистика:</h5>
+            <div class="progress mb-2">
+                <div class="progress-bar" style="width: 25%">Блоки</div>
+                <div class="progress-bar bg-secondary" style="width: 75%">Остальное</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ⭐ ПЕРЕОПРЕДЕЛЕНИЕ FOOTER -->
+{% block footer %}
+<div class="bg-primary text-white py-3">
+    <div class="container text-center">
+        <p class="mb-0">🎯 Эта страница демонстрирует работу блоков в Django</p>
+        <small>Время: {{ current_time|date:"H:i:s" }}</small>
+    </div>
+</div>
+{% endblock %}
+
+<!-- ⭐ ДОБАВЛЕНИЕ SCRIPTS -->
+
+<script>
+console.log("📦 Страница блоков загружена!");
+document.addEventListener('DOMContentLoaded', function() {
+    const blocks = document.querySelectorAll('.block-demo');
+    blocks.forEach((block, index) => {
+        block.addEventListener('click', function() {
+            alert(`Вы кликнули на блок #${index + 1}`);
+        });
+    });
+});
+</script>

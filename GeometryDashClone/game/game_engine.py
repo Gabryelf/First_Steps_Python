@@ -2,94 +2,114 @@ from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, BooleanProperty, StringProperty
 from kivy.clock import Clock
 from kivy.core.window import Window
-from kivy.graphics import Color, Rectangle
+from kivy.graphics import Color, Rectangle, Line
 import random
 
 from .player import Player
 from .obstacle import Obstacle
+from .ground import Ground
+from .background import Background
+from .particle import Particle
 
 
 class GameEngine(Widget):
     score = NumericProperty(0)
     is_game_running = BooleanProperty(False)
-    game_over = BooleanProperty(False)
-    high_score = NumericProperty(0)
-    status_text = StringProperty("Press SPACE to start")
+    game_speed = NumericProperty(300)
+    game_state = StringProperty("menu")  # menu, playing, game_over
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.player = Player()
+        self.ground = Ground()
+        self.background = Background()
         self.obstacles = []
+        self.particles = []
+
         self.obstacle_timer = 0
-        self.obstacle_frequency = 2.0
+        self.obstacle_interval = 1.5
+        self.last_obstacle_x = 800
 
-        self._create_background()
-        self.bind(size=self._update_bg, pos=self._update_bg)
-        Window.bind(on_key_down=self._on_key_down)
+        self.setup_graphics()
+        Window.bind(on_key_down=self.on_key_down)
 
+    def setup_graphics(self):
+        # Добавляем игровые объекты
+        self.add_widget(self.background)
+        self.add_widget(self.ground)
         self.add_widget(self.player)
 
-    def _create_background(self):
-        with self.canvas.before:
-            Color(0.1, 0.1, 0.3, 1)
-            self.bg_rect = Rectangle(pos=self.pos, size=self.size)
+        # Счетчик очков
+        with self.canvas:
+            Color(1, 1, 1, 1)
+            self.score_label = Rectangle(pos=(650, 550), size=(140, 40))
 
-    def _update_bg(self, *args):
-        self.bg_rect.pos = self.pos
-        self.bg_rect.size = self.size
-
-    def _on_key_down(self, instance, keyboard, keycode, text, modifiers):
-        if keycode == 32:
-            if not self.is_game_running and not self.game_over:
+    def on_key_down(self, instance, keyboard, keycode, text, modifiers):
+        if keycode == 32:  # SPACE
+            if self.game_state == "menu":
                 self.start_game()
-            elif self.is_game_running:
+            elif self.game_state == "playing":
                 self.player.jump()
-            elif self.game_over:
+            elif self.game_state == "game_over":
                 self.restart_game()
 
     def start_game(self):
+        self.game_state = "playing"
         self.is_game_running = True
-        self.game_over = False
         self.score = 0
+        self.game_speed = 300
         self.obstacles = []
+        self.particles = []
         self.obstacle_timer = 0
-        self.status_text = ""
+        self.last_obstacle_x = 800
 
+        # Очищаем препятствия
         for obstacle in self.obstacles[:]:
             self.remove_widget(obstacle)
-
         self.obstacles.clear()
 
+        # Запускаем игровой цикл
         Clock.unschedule(self.update)
         Clock.schedule_interval(self.update, 1 / 60.)
 
     def restart_game(self):
-        self.game_over = False
         self.start_game()
 
-    def end_game(self):
+    def game_over(self):
+        self.game_state = "game_over"
         self.is_game_running = False
-        self.game_over = True
-        self.high_score = max(self.high_score, self.score)
-        self.status_text = f"Game Over! Score: {self.score}\nPress SPACE to restart"
         Clock.unschedule(self.update)
+
+    def create_particles(self, x, y):
+        for _ in range(8):
+            particle = Particle(x, y)
+            self.particles.append(particle)
+            self.add_widget(particle)
 
     def update(self, dt):
         if not self.is_game_running:
             return
 
+        # Обновляем объекты
         self.player.update(dt)
+        self.ground.speed = self.game_speed
+        self.ground.update(dt)
 
+        # Генерация препятствий
         self.obstacle_timer += dt
-        if self.obstacle_timer >= self.obstacle_frequency:
+        if self.obstacle_timer >= self.obstacle_interval:
             self.generate_obstacle()
             self.obstacle_timer = 0
 
+        # Обновляем препятствия
         for obstacle in self.obstacles[:]:
+            obstacle.speed = self.game_speed
             obstacle.update(dt)
 
+            # Проверка столкновений
             if obstacle.collides_with_player(self.player):
-                self.end_game()
+                self.create_particles(self.player.center_x, self.player.center_y)
+                self.game_over()
                 return
 
             if obstacle.is_off_screen():
@@ -97,17 +117,46 @@ class GameEngine(Widget):
                 self.remove_widget(obstacle)
                 self.score += 1
 
+        # Обновляем частицы
+        for particle in self.particles[:]:
+            particle.update(dt)
+            if particle.is_dead():
+                self.particles.remove(particle)
+                self.remove_widget(particle)
+
+        # Увеличиваем сложность
+        self.game_speed += dt * 5
+        self.obstacle_interval = max(0.8, 1.5 - self.score * 0.01)
+
     def generate_obstacle(self):
         obstacle_type = random.randint(0, 2)
-        new_obstacle = Obstacle(x_pos=self.width, obstacle_type=obstacle_type)
-        self.obstacles.append(new_obstacle)
-        self.add_widget(new_obstacle)
+        min_distance = 300 + random.randint(0, 200)
+
+        new_x = max(self.width, self.last_obstacle_x + min_distance)
+        obstacle = Obstacle(new_x, obstacle_type)
+
+        self.obstacles.append(obstacle)
+        self.add_widget(obstacle)
+        self.last_obstacle_x = new_x
 
     def on_touch_down(self, touch):
-        if self.is_game_running:
-            self.player.jump()
-        elif not self.game_over:
+        if self.game_state == "menu":
             self.start_game()
-        elif self.game_over:
+        elif self.game_state == "playing":
+            self.player.jump()
+        elif self.game_state == "game_over":
             self.restart_game()
         return True
+
+    def draw_ui(self):
+        # Отрисовка UI
+        with self.canvas:
+            Color(1, 1, 1, 1)
+            Line(rectangle=(650, 550, 140, 40), width=2)
+
+            if self.game_state == "menu":
+                Color(1, 1, 1, 1)
+                Rectangle(pos=(300, 300), size=(200, 60))
+            elif self.game_state == "game_over":
+                Color(1, 0, 0, 1)
+                Rectangle(pos=(300, 300), size=(200, 60))

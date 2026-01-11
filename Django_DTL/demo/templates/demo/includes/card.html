@@ -1,0 +1,27 @@
+<div class="card {{ class }}">
+    {% if header %}
+    <div class="card-header">
+        {{ header }}
+    </div>
+    {% endif %}
+
+    <div class="card-body">
+        {% if title %}
+        <h5 class="card-title">{{ title }}</h5>
+        {% endif %}
+
+        {% if text %}
+        <p class="card-text">{{ text }}</p>
+        {% endif %}
+
+        {% if content %}
+        {{ content }}
+        {% endif %}
+    </div>
+
+    {% if footer %}
+    <div class="card-footer">
+        {{ footer }}
+    </div>
+    {% endif %}
+</div>

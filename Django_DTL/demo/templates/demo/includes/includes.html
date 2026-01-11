@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Включения - Django Шаблонизация{% endblock %}
+
+{% block content %}
+<h1 class="display-5 mb-4">🧩 Включение шаблонов</h1>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="demo-card">
+            <h3>📦 Тег <code>{% verbatim %}{% include %}{% endverbatim %}</code></h3>
+            <p>Позволяет включать один шаблон в другой.</p>
+            
+            <h5 class="mt-4">Простое включение:</h5>
+            <div class="tag-code">
+{% verbatim %}{% include "demo/includes/alert.html" %}{% endverbatim %}
+            </div>
+            {% include "demo/includes/alert.html" %}
+            
+            <h5 class="mt-4">С передачей переменных:</h5>
+            <div class="tag-code">
+{% verbatim %}{% include "demo/includes/alert.html" with 
+    type="success" 
+    icon="bi bi-check-circle"
+    title="Успех!" 
+    message="Операция выполнена успешно."
+    dismissible=True
+%}{% endverbatim %}
+            </div>
+            {% include "demo/includes/alert.html" with 
+                type="success" 
+                icon="bi bi-check-circle"
+                title="Успех!" 
+                message="Операция выполнена успешно."
+                dismissible=True
+            %}
+            
+            <h5 class="mt-4">Карточка с контентом:</h5>
+            {% include "demo/includes/card.html" with 
+                header="Пример карточки"
+                title="Заголовок карточки"
+                text="Это содержимое карточки, переданное через переменные."
+                footer="Подвал карточки"
+                class="border-primary"
+            %}
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="demo-card">
+            <h4>🎯 Преимущества includes</h4>
+            <ul>
+                <li>📁 <strong>Повторное использование</strong> кода</li>
+                <li>🎨 <strong>Единообразие</strong> элементов</li>
+                <li>🔧 <strong>Легкое обновление</strong> в одном месте</li>
+                <li>🧩 <strong>Модульность</strong> кода</li>
+                <li>⚡ <strong>Кэширование</strong> включений</li>
+            </ul>
+            
+            <hr>
+            
+            <h5>💡 Когда использовать?</h5>
+            <ul>
+                <li>Навигационные меню</li>
+                <li>Футеры и хедеры</li>
+                <li>Карточки товаров</li>
+                <li>Формы</li>
+                <li>Сообщения</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

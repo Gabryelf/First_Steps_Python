@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+
+{% block title %}Теги - Django Шаблонизация{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<style>
+    .tag-example {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        border: 1px solid #e3e6f0;
+    }
+    
+    .tag-code {
+        background: #f8f9fc;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+        font-family: monospace;
+    }
+    
+    .tag-result {
+        background: #e7f3ff;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #4e73df;
+    }
+    
+    .loop-item {
+        padding: 10px;
+        margin: 5px 0;
+        background: #f8f9fc;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <h1 class="display-5 mb-4">🔄 Теги в Django Template Language</h1>
+        
+        <!-- Тег for -->
+        <div class="tag-example">
+            <h3>🔄 Тег <code>{% verbatim %}{% for %}{% endverbatim %}</code></h3>
+            <p>Используется для перебора списков, словарей и других итерируемых объектов.</p>
+            
+            <div class="tag-code">
+{% verbatim %}{% for item in items %}
+    {{ forloop.counter }}. {{ item }}
+{% endfor %}{% endverbatim %}
+            </div>
+            
+            <div class="tag-result">
+                {% for item in items %}
+                <div class="loop-item">
+                    {{ forloop.counter }}. {{ item }}
+                    <small class="text-muted">
+                        (первый: {{ forloop.first }}, 
+                        последний: {{ forloop.last }},
+                        индекс: {{ forloop.counter0 }})
+                    </small>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <h5 class="mt-3">Переменные цикла <code>forloop</code>:</h5>
+            <ul>
+                <li><code>forloop.counter</code> — номер итерации (1, 2, 3...)</li>
+                <li><code>forloop.counter0</code> — номер итерации (0, 1, 2...)</li>
+                <li><code>forloop.revcounter</code> — обратный счетчик</li>
+                <li><code>forloop.first</code> — первая итерация?</li>
+                <li><code>forloop.last</code> — последняя итерация?</li>
+            </ul>
+        </div>
+        
+        <!-- Тег if -->
+        <div class="tag-example">
+            <h3>✅ Тег <code>{% verbatim %}{% if %}{% endverbatim %}</code></h3>
+            <p>Условное выполнение блока кода.</p>
+            
+            <div class="tag-code">
+{% verbatim %}{% if user.is_admin %}
+    👑 Администратор
+{% elif user.name %}
+    👤 {{ user.name }}
+{% else %}
+    🎭 Гость
+{% endif %}{% endverbatim %}
+            </div>
+            
+            <div class="tag-result">
+                {% if user.is_admin %}
+                👑 Администратор
+                {% elif user.name %}
+                👤 {{ user.name }}
+                {% else %}
+                🎭 Гость
+                {% endif %}
+            </div>
+            
+            <h5 class="mt-3">Операторы в условиях:</h5>
+            <ul>
+                <li><code>==</code>, <code>!=</code> — равно/не равно</li>
+                <li><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></li>
+                <li><code>in</code> — вхождение в список</li>
+                <li><code>not in</code> — не входит в список</li>
+                <li><code>and</code>, <code>or</code> — логические</li>
+                <li><code>not</code> — отрицание</li>
+            </ul>
+        </div>
+        
+        <!-- Тег with -->
+        <div class="tag-example">
+            <h3>📝 Тег <code>{% verbatim %}{% with %}{% endverbatim %}</code></h3>
+            <p>Создает локальную переменную с псевдонимом.</p>
+            
+            <div class="tag-code">
+{% verbatim %}{% with total=items|length %}
+    Всего элементов: {{ total }}
+{% endwith %}{% endverbatim %}
+            </div>
+            
+            <div class="tag-result">
+                {% with total=items|length %}
+                Всего элементов: {{ total }}
+                {% endwith %}
+            </div>
+        </div>
+        
+        <!-- Тег empty -->
+        <div class="tag-example">
+            <h3>📭 Тег <code>{% verbatim %}{% empty %}{% endverbatim %}</code></h3>
+            <p>Выполняется, если цикл for не имеет элементов.</p>
+            
+            <div class="tag-code">
+{% verbatim %}{% for item in empty_list %}
+    {{ item }}
+{% empty %}
+    🎒 Список пуст!
+{% endfor %}{% endverbatim %}
+            </div>
+            
+            <div class="tag-result">
+                {% for item in empty_list %}
+                {{ item }}
+                {% empty %}
+                🎒 Список пуст!
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Тег ifchanged -->
+        <div class="tag-example">
+            <h3>🔄 Тег <code>{% verbatim %}{% ifchanged %}{% endverbatim %}</code></h3>
+            <p>Выполняет блок только если значение изменилось с предыдущей итерации.</p>
+            
+            <div class="tag-code">
+{% verbatim %}{% for post in posts %}
+{% ifchanged post.published %}
+    {% if post.published %}
+        📢 Опубликованные:
+    {% else %}
+        📝 Черновики:
+    {% endif %}
+{% endifchanged %}
+    - {{ post.title }}
+{% endfor %}{% endverbatim %}
+            </div>
+            
+            <div class="tag-result">
+                {% for post in posts %}
+                {% ifchanged post.published %}
+                    {% if post.published %}
+                    📢 Опубликованные:
+                    {% else %}
+                    📝 Черновики:
+                    {% endif %}
+                {% endifchanged %}
+                <div class="loop-item">- {{ post.title }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Комментарии -->
+        <div class="tag-example">
+            <h3>💭 Комментарии</h3>
+            <p>Комментарии не отображаются в итоговом HTML.</p>
+            
+            <div class="tag-code">
+{% verbatim %}{# Это однострочный комментарий #}
+{% comment "Пояснение" %}
+    Это многострочный комментарий.
+    Он может занимать несколько строк.
+    Ничто внутри не будет выполнено.
+{% endcomment %}{% endverbatim %}
+            </div>
+        </div>
+        
+        <!-- Цикл по словарю -->
+        <div class="tag-example">
+            <h3>🗂️ Цикл по словарю</h3>
+            
+            <div class="tag-code">
+{% verbatim %}{% for key, value in dict_var.items %}
+    {{ key }}: {{ value }}
+{% endfor %}{% endverbatim %}
+            </div>
+            
+            <div class="tag-result">
+                {% for key, value in dict_var.items %}
+                <div class="loop-item">
+                    <strong>{{ key }}</strong>: {{ value }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="demo-card">
+            <h4>🔄 Основные теги</h4>
+            
+            <h5 class="mt-3">Управление потоком:</h5>
+            <ul>
+                <li><code>{% verbatim %}{% for %}{% endverbatim %}</code> — цикл</li>
+                <li><code>{% verbatim %}{% if %}{% endverbatim %}</code> — условие</li>
+                <li><code>{% verbatim %}{% elif %}{% endverbatim %}</code> — иначе если</li>
+                <li><code>{% verbatim %}{% else %}{% endverbatim %}</code> — иначе</li>
+            </ul>
+            
+            <h5>Переменные:</h5>
+            <ul>
+                <li><code>{% verbatim %}{% with %}{% endverbatim %}</code> — локальная переменная</li>
+                <li><code>{% verbatim %}{% widthratio %}{% endverbatim %}</code> — пропорция</li>
+            </ul>
+            
+            <h5>Циклы:</h5>
+            <ul>
+                <li><code>{% verbatim %}{% empty %}{% endverbatim %}</code> — если пусто</li>
+                <li><code>{% verbatim %}{% ifchanged %}{% endverbatim %}</code> — если изменилось</li>
+            </ul>
+            
+            <h5>Наследование:</h5>
+            <ul>
+                <li><code>{% verbatim %}{% block %}{% endverbatim %}</code> — определение блока</li>
+                <li><code>{% verbatim %}{% extends %}{% endverbatim %}</code> — наследование</li>
+                <li><code>{{ block.super }}</code> — родительское содержимое</li>
+            </ul>
+            
+            <h5>Включения:</h5>
+            <ul>
+                <li><code>{% verbatim %}{% include %}{% endverbatim %}</code> — включение шаблона</li>
+            </ul>
+            
+            <h5>Комментарии:</h5>
+            <ul>
+                <li><code>{# ... #}</code> — однострочный</li>
+                <li><code>{% verbatim %}{% comment %}{% endverbatim %}</code> — многострочный</li>
+            </ul>
+        </div>
+        
+        <div class="demo-card bg-info bg-opacity-10">
+            <h5>💡 Пример сложного условия:</h5>
+            <div class="tag-code">
+{% verbatim %}{% if score >= 90 and user.is_admin or score >= 80 %}
+    Высокий результат!
+{% endif %}{% endverbatim %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
