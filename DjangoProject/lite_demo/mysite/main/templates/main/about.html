@@ -1,0 +1,51 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}О сайте - Django Blog{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h1 class="h3 mb-0">О нашем сайте</h1>
+            </div>
+            <div class="card-body">
+                <p class="lead">Добро пожаловать в наш блог на Django!</p>
+                <p>Это учебный проект, созданный для демонстрации возможностей Django.</p>
+                
+                <h4 class="mt-4">Что мы использовали:</h4>
+                <ul>
+                    <li>Django 4.x для бэкенда</li>
+                    <li>Bootstrap 5 для фронтенда</li>
+                    <li>SQLite для базы данных</li>
+                    <li>Шаблоны Django для отображения</li>
+                </ul>
+                
+                <h4 class="mt-4">Функционал:</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5>CRUD операции</h5>
+                                <p>Создание, чтение, обновление и удаление статей</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5>Админка</h5>
+                                <p>Встроенная административная панель Django</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="{% url 'home' %}" class="btn btn-primary mt-3">
+                    <i class="fas fa-arrow-left"></i> Вернуться на главную
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

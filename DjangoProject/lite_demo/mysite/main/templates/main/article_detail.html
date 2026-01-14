@@ -1,0 +1,48 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}{{ article.title }} - Django Blog{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <article class="card">
+            <div class="card-header bg-light">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+                        <li class="breadcrumb-item active">{{ article.title|truncatechars:30 }}</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">{{ article.title }}</h1>
+                
+                <div class="text-muted mb-4">
+                    <small>
+                        <i class="far fa-calendar"></i> Опубликовано: {{ article.created_at|date:"d.m.Y в H:i" }}
+                        {% if not article.is_published %}
+                            <span class="badge bg-warning text-dark ms-2">Черновик</span>
+                        {% endif %}
+                    </small>
+                </div>
+                
+                <div class="article-content">
+                    {{ article.content|linebreaks }}
+                </div>
+            </div>
+            <div class="card-footer bg-light">
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left"></i> Назад к списку
+                    </a>
+                    <div>
+                        <a href="{% url 'article_edit' article.id %}" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Редактировать
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+{% endblock %}
