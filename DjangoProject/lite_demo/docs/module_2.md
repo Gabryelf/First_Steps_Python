@@ -186,6 +186,11 @@ def home(request):
         </div>
     </div>
 
+    <p>
+        <a href="/admin/" target="_blank">Административная панель</a> |
+        Всего статей: {{ articles|length }}
+    </p>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
