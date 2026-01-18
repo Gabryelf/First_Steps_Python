@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Магазин Django - Главная</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Используем навигацию из отдельного файла (для упрощения копируем ее сюда) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">DjangoShop</a>
+            <!-- ... та же навигация что и в base.html ... -->
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <!-- Герой-секция -->
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Добро пожаловать в DjangoShop!</h1>
+                <p class="col-md-8 fs-4">Лучший интернет-магазин электроники с быстрой доставкой и гарантией качества. Более 1000 товаров в каталоге.</p>
+                <a href="products/list.html" class="btn btn-primary btn-lg">Перейти к покупкам</a>
+            </div>
+        </div>
+
+        <!-- Популярные категории -->
+        <h2 class="mb-4">Популярные категории</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="static/images/no-image.png" class="card-img-top product-card-img" alt="Ноутбуки">
+                    <div class="card-body">
+                        <h5 class="card-title">Ноутбуки</h5>
+                        <p class="card-text">Игровые, рабочие, ультрабуки от ведущих производителей.</p>
+                        <a href="products/list.html?category=1" class="btn btn-outline-primary">Смотреть товары</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="static/images/no-image.png" class="card-img-top product-card-img" alt="Смартфоны">
+                    <div class="card-body">
+                        <h5 class="card-title">Смартфоны</h5>
+                        <p class="card-text">Флагманы и бюджетные модели с лучшими характеристиками.</p>
+                        <a href="products/list.html?category=2" class="btn btn-outline-primary">Смотреть товары</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="static/images/no-image.png" class="card-img-top product-card-img" alt="Наушники">
+                    <div class="card-body">
+                        <h5 class="card-title">Наушники</h5>
+                        <p class="card-text">Беспроводные, игровые, студийные наушники.</p>
+                        <a href="products/list.html?category=3" class="btn btn-outline-primary">Смотреть товары</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Акционные товары -->
+        <h2 class="mb-4">Акционные предложения</h2>
+        <div class="row g-4">
+            <!-- Товар 1 -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        -20%
+                    </span>
+                    <img src="static/images/no-image.png" class="card-img-top product-card-img" alt="Ноутбук ASUS">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Ноутбук ASUS VivoBook</h5>
+                        <p class="card-text">15.6", Intel Core i5, 8GB RAM, 512GB SSD</p>
+                        <div class="mt-auto">
+                            <p class="text-muted"><s>65 990 ₽</s></p>
+                            <p class="fw-bold fs-4 text-danger">52 792 ₽</p>
+                            <a href="products/detail.html?id=1" class="btn btn-primary w-100">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Товар 2 -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <img src="static/images/no-image.png" class="card-img-top product-card-img" alt="iPhone 14">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">iPhone 14 Pro</h5>
+                        <p class="card-text">128GB, Deep Purple, Super Retina XDR display</p>
+                        <div class="mt-auto">
+                            <p class="fw-bold fs-4">89 990 ₽</p>
+                            <a href="products/detail.html?id=2" class="btn btn-primary w-100">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Товар 3 -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <img src="static/images/no-image.png" class="card-img-top product-card-img" alt="Наушники Sony">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Наушники Sony WH-1000XM4</h5>
+                        <p class="card-text">Беспроводные, шумоподавление, 30 часов работы</p>
+                        <div class="mt-auto">
+                            <p class="fw-bold fs-4">24 990 ₽</p>
+                            <a href="products/detail.html?id=3" class="btn btn-primary w-100">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Товар 4 -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                        Новинка
+                    </span>
+                    <img src="static/images/no-image.png" class="card-img-top product-card-img" alt="Samsung S23">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Samsung Galaxy S23 Ultra</h5>
+                        <p class="card-text">256GB, Phantom Black, 200MP камера</p>
+                        <div class="mt-auto">
+                            <p class="fw-bold fs-4">99 990 ₽</p>
+                            <a href="products/detail.html?id=4" class="btn btn-primary w-100">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-4">
+        <!-- ... тот же футер что и в base.html ... -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

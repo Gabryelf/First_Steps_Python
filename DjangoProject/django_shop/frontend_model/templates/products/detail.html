@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Магазин Django - Ноутбук ASUS VivoBook 15</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">DjangoShop</a>
+            <!-- ... навигация ... -->
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <!-- Хлебные крошки -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Главная</a></li>
+                <li class="breadcrumb-item"><a href="list.html">Ноутбуки</a></li>
+                <li class="breadcrumb-item active">Ноутбук ASUS VivoBook 15</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <!-- Изображения товара -->
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <img src="../static/images/no-image.png" class="card-img-top" alt="Ноутбук ASUS" id="mainImage">
+                </div>
+                <div class="row g-2">
+                    <div class="col-3">
+                        <img src="../static/images/no-image.png" class="img-thumbnail active" style="cursor: pointer; height: 80px; object-fit: cover;" alt="Вид 1">
+                    </div>
+                    <div class="col-3">
+                        <img src="../static/images/no-image.png" class="img-thumbnail" style="cursor: pointer; height: 80px; object-fit: cover;" alt="Вид 2">
+                    </div>
+                    <div class="col-3">
+                        <img src="../static/images/no-image.png" class="img-thumbnail" style="cursor: pointer; height: 80px; object-fit: cover;" alt="Вид 3">
+                    </div>
+                    <div class="col-3">
+                        <img src="../static/images/no-image.png" class="img-thumbnail" style="cursor: pointer; height: 80px; object-fit: cover;" alt="Вид 4">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Информация о товаре -->
+            <div class="col-md-6">
+                <span class="badge bg-success mb-2">В наличии</span>
+                <h1 class="mb-3">Ноутбук ASUS VivoBook 15 X1502ZA-BQ306</h1>
+                
+                <div class="mb-4">
+                    <span class="text-muted">Артикул: ASUS-12345</span>
+                    <div class="mt-2">
+                        <span class="fs-3 fw-bold">52 990 ₽</span>
+                        <span class="text-muted text-decoration-line-through ms-2">65 990 ₽</span>
+                        <span class="badge bg-danger ms-2">-20%</span>
+                    </div>
+                </div>
+
+                <!-- Характеристики -->
+                <div class="mb-4">
+                    <h5>Основные характеристики:</h5>
+                    <ul class="list-unstyled">
+                        <li><strong>Экран:</strong> 15.6" FHD (1920x1080) IPS, 60Hz</li>
+                        <li><strong>Процессор:</strong> Intel Core i5-1235U (10 ядер)</li>
+                        <li><strong>Оперативная память:</strong> 8GB DDR4</li>
+                        <li><strong>Накопитель:</strong> 512GB SSD M.2 NVMe</li>
+                        <li><strong>Видеокарта:</strong> Intel Iris Xe Graphics</li>
+                        <li><strong>Операционная система:</strong> Windows 11 Home</li>
+                        <li><strong>Вес:</strong> 1.7 кг</li>
+                    </ul>
+                </div>
+
+                <!-- Форма заказа -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Добавить в корзину</h5>
+                        <form id="addToCartForm">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label for="quantity" class="col-form-label">Количество:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="input-group" style="width: 120px;">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="changeQuantity(-1)">-</button>
+                                        <input type="number" class="form-control text-center" id="quantity" value="1" min="1" max="10">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="changeQuantity(1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="addToCart()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus me-2" viewBox="0 0 16 16">
+                                            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
+                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                        </svg>
+                                        Добавить в корзину
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Кнопки действий -->
+                <div class="d-grid gap-2 d-md-flex">
+                    <button class="btn btn-outline-secondary me-md-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart me-1" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                        </svg>
+                        В избранное
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share me-1" viewBox="0 0 16 16">
+                            <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+                        </svg>
+                        Поделиться
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Табы с дополнительной информацией -->
+        <div class="mt-5">
+            <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description">
+                        Описание
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs">
+                        Характеристики
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews">
+                        Отзывы (24)
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content p-3 border border-top-0 rounded-bottom" id="productTabsContent">
+                <div class="tab-pane fade show active" id="description">
+                    <p>Ноутбук ASUS VivoBook 15 - это идеальное сочетание производительности, стиля и портативности. Модель оснащена современным процессором Intel Core i5 12-го поколения, который обеспечивает высокую скорость работы в любых задачах: от офисных приложений до мультимедийного контента.</p>
+                    <p>15.6-дюймовый дисплей с разрешением Full HD и технологией IPS гарантирует четкое и яркое изображение с широкими углами обзора. Благодаря тонким рамкам экран занимает 88% площади крышки, что делает ноутбук более компактным.</p>
+                </div>
+                <div class="tab-pane fade" id="specs">
+                    <!-- Подробные характеристики -->
+                </div>
+                <div class="tab-pane fade" id="reviews">
+                    <!-- Отзывы -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-4">
+        <!-- ... футер ... -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function changeQuantity(delta) {
+            const input = document.getElementById('quantity');
+            let value = parseInt(input.value) + delta;
+            if (value < 1) value = 1;
+            if (value > 10) value = 10;
+            input.value = value;
+        }
+
+        function addToCart() {
+            const quantity = document.getElementById('quantity').value;
+            alert(`Ноутбук ASUS VivoBook 15 добавлен в корзину в количестве ${quantity} шт.!`);
+        }
+
+        // Переключение миниатюр
+        document.querySelectorAll('.img-thumbnail').forEach(img => {
+            img.addEventListener('click', function() {
+                document.querySelectorAll('.img-thumbnail').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('mainImage').src = this.src;
+            });
+        });
+    </script>
+</body>
+</html>

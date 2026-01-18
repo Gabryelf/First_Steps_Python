@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+    <h2>Профиль пользователя {{ user.username }}</h2>
+    <p>Email: {{ user.email }}</p>
+    <hr>
+    <h3>Ваши заказы</h3>
+    {% if orders %}
+        <ul class="list-group">
+        {% for order in orders %}
+            <li class="list-group-item">
+                Заказ #{{ order.id }} от {{ order.created|date:"d.m.Y H:i" }}
+                - <strong>{{ order.get_total_cost }} руб.</strong>
+                (Статус: {% if order.paid %}Оплачен{% else %}Не оплачен{% endif %})
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>У вас еще нет заказов.</p>
+    {% endif %}
+{% endblock %}

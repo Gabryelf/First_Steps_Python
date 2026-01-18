@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ product.image.url|default:'/static/no-image.png' }}"
+                 class="img-fluid rounded"
+                 alt="{{ product.name }}">
+        </div>
+        <div class="col-md-6">
+            <h1>{{ product.name }}</h1>
+            <p class="h4 text-primary">{{ product.price }} руб.</p>
+            <p>{{ product.description }}</p>
+            <p>Категория: <a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a></p>
+
+            <!-- Форма для добавления в корзину -->
+            <form action="{% url 'cart:cart_add' product.id %}" method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="input-group mb-3" style="max-width: 200px;">
+                    <input type="number" name="quantity" value="1" min="1" max="10" class="form-control">
+                    <button type="submit" class="btn btn-success">Добавить в корзину</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

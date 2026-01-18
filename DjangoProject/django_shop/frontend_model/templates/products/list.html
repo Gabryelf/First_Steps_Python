@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Магазин Django - Каталог товаров</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">DjangoShop</a>
+            <!-- ... навигация ... -->
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <!-- Хлебные крошки -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Главная</a></li>
+                <li class="breadcrumb-item active">Все товары</li>
+            </ol>
+        </nav>
+
+        <!-- Заголовок и фильтры -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h1>Каталог товаров</h1>
+                <p class="text-muted">Показано 8 из 156 товаров</p>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex justify-content-end">
+                    <div class="dropdown me-2">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            Сортировка: По популярности
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">По цене (дешевые)</a></li>
+                            <li><a class="dropdown-item" href="#">По цене (дорогие)</a></li>
+                            <li><a class="dropdown-item" href="#">По новизне</a></li>
+                            <li><a class="dropdown-item" href="#">По рейтингу</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-secondary active">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-3x3-gap" viewBox="0 0 16 16">
+                                <path d="M4 2v2H2V2h2zm1 12v-2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 10v-2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 2v2H7V2h2zm5 0v2h-2V2h2zM4 7v2H2V7h2zm5 0v2H7V7h2zm5 0h-2v2h2V7zM4 12v2H2v-2h2zm5 0v2H7v-2h2zm5 0v2h-2v-2h2zM12 1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zm1 4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2z"/>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сетка товаров -->
+        <div class="row g-4">
+            <!-- Товары -->
+            <!-- Товар 1 -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <img src="../static/images/no-image.png" class="card-img-top product-card-img" alt="Ноутбук ASUS">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge bg-warning mb-2">В наличии</span>
+                        <h5 class="card-title">Ноутбук ASUS VivoBook 15</h5>
+                        <p class="card-text text-muted small">Экран 15.6" FHD, Intel Core i5-1235U, 8GB DDR4, 512GB SSD, Windows 11</p>
+                        <div class="mt-auto">
+                            <p class="fw-bold fs-4">52 990 ₽</p>
+                            <div class="d-grid gap-2">
+                                <a href="detail.html?id=1" class="btn btn-outline-primary">Подробнее</a>
+                                <button class="btn btn-primary add-to-cart">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Товар 2 -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <img src="../static/images/no-image.png" class="card-img-top product-card-img" alt="iPhone 14">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge bg-warning mb-2">В наличии</span>
+                        <h5 class="card-title">iPhone 14 Pro 128GB</h5>
+                        <p class="card-text text-muted small">Экран 6.1", OLED, A16 Bionic, основная камера 48 Мп, фиолетовый</p>
+                        <div class="mt-auto">
+                            <p class="fw-bold fs-4">89 990 ₽</p>
+                            <div class="d-grid gap-2">
+                                <a href="detail.html?id=2" class="btn btn-outline-primary">Подробнее</a>
+                                <button class="btn btn-primary add-to-cart">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Добавьте еще 6 товаров по аналогии -->
+            
+        </div>
+
+        <!-- Пагинация -->
+        <nav aria-label="Навигация по страницам" class="mt-5">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Назад</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Вперед</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-4">
+        <!-- ... футер ... -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productName = this.closest('.card').querySelector('.card-title').textContent;
+                    alert(`Товар "${productName}" добавлен в корзину!`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

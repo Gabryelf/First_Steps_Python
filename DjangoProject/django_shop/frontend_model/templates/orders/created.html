@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Магазин Django - Заказ оформлен</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">DjangoShop</a>
+            <!-- ... навигация ... -->
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card border-success">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="mb-0 text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Заказ успешно оформлен!
+                        </h3>
+                    </div>
+                    <div class="card-body text-center py-5">
+                        <div class="mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="green" class="bi bi-bag-check" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                            </svg>
+                        </div>
+                        
+                        <h4 class="mb-3">Спасибо за ваш заказ!</h4>
+                        <p class="lead mb-4">
+                            Ваш заказ <strong>#12345</strong> успешно создан и находится в обработке.
+                        </p>
+                        
+                        <div class="card mb-4">
+                            <div class="card-body text-start">
+                                <h5 class="card-title">Детали заказа:</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <strong>Номер заказа:</strong> #12345
+                                    </li>
+                                    <li class="mb-2">
+                                        <strong>Дата оформления:</strong> 15.01.2024 14:30
+                                    </li>
+                                    <li class="mb-2">
+                                        <strong>Сумма заказа:</strong> 89 970 ₽
+                                    </li>
+                                    <li class="mb-2">
+                                        <strong>Способ оплаты:</strong> Банковская карта
+                                    </li>
+                                    <li class="mb-2">
+                                        <strong>Адрес доставки:</strong> г. Москва, ул. Примерная, д. 1, кв. 10
+                                    </li>
+                                    <li>
+                                        <strong>Статус:</strong> <span class="badge bg-warning">В обработке</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p class="mb-4">
+                            На указанный вами email отправлено письмо с подтверждением заказа. 
+                            В ближайшее время с вами свяжется наш менеджер для уточнения деталей доставки.
+                        </p>
+                        
+                        <div class="alert alert-info" role="alert">
+                            <h6 class="alert-heading">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16">
+                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 8m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                                </svg>
+                                Время обработки заказа
+                            </h6>
+                            Заказы обрабатываются в рабочие дни с 9:00 до 18:00. Обычно обработка занимает 1-2 часа.
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-center">
+                            <a href="../index.html" class="btn btn-primary btn-lg me-md-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-door me-2" viewBox="0 0 16 16">
+                                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+                                </svg>
+                                На главную
+                            </a>
+                            <a href="../users/profile.html" class="btn btn-outline-primary btn-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                </svg>
+                                В личный кабинет
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-4">
+        <!-- ... футер ... -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
