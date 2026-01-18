@@ -1,112 +1,153 @@
-# 🛍️ **ПОЛНОЕ РУКОВОДСТВО: ИНТЕРНЕТ-МАГАЗИН НА DJANGO ДЛЯ НОВИЧКОВ**
-
-> 📚 **Исправленная и дополненная версия с учетом всех ошибок**  
-> ✅ **Проверено на Django 5.2.10**  
-> ⚡ **Пошагово с полным объяснением**  
-> 🛡️ **Безопасно для новичков - никаких кастомных моделей пользователя**
-
----
-
-## 🎯 **ЧТО МЫ СОЗДАДИМ**
+# 🛒 **ПОЛНОЕ РУКОВОДСТВО: ИНТЕРНЕТ-МАГАЗИН НА DJANGO**
 
 <div align="center">
 
 ![Магазин на Django](https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif)
 
-*Визуализация конечного результата*
 </div>
 
 ---
 
-## 📁 **СТРУКТУРА ПРОЕКТА**
+## 📋 **СОДЕРЖАНИЕ**
 
-```
-django_shop/
-├── config/              # Настройки проекта
-├── products/            # Товары и категории
-├── cart/                # Корзина покупок
-├── orders/              # Оформление заказов
-├── users/               # Пользователи
-├── templates/           # HTML шаблоны
-├── static/              # Статические файлы
-├── media/               # Изображения товаров
-└── manage.py            # Управляющий скрипт
-```
+- [🎯 **Цель проекта**](#-цель-проекта)
+- [⚡ **Быстрый старт**](#-быстрый-старт)
+- [📁 **Структура проекта**](#-структура-проекта)
+- [🚀 **Этап 0: Подготовка среды**](#-этап-0-подготовка-среды)
+- [📦 **Этап 1: Модели товаров**](#-этап-1-модели-товаров)
+- [🏗️ **Этап 2: Шаблоны и представления**](#️-этап-2-шаблоны-и-представления)
+- [🛒 **Этап 3: Корзина покупок**](#-этап-3-корзина-покупок)
+- [📦 **Этап 4: Оформление заказов**](#-этап-4-оформление-заказов)
+- [👤 **Этап 5: Аутентификация**](#-этап-5-аутентификация)
+- [🔧 **Этап 6: Финальная настройка**](#-этап-6-финальная-настройка)
+- [⚠️ **Решение проблем**](#️-решение-проблем)
 
 ---
 
-## ⚠️ **ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ**
+## 🎯 **Цель проекта**
 
-<div style="background: #fff3cd; padding: 15px; border-radius: 5px; border-left: 4px solid #ffc107; margin: 20px 0;">
-⚠️ <strong>Избегаем главных ошибок:</strong>
-<ol>
-<li><strong>НЕ используем кастомную модель пользователя</strong> - только стандартную</li>
-<li><strong>НЕ используем index_together</strong> - устарел в Django 5</li>
-<li><strong>НЕ используем пространства имен в URL</strong> - упрощаем для новичков</li>
-<li><strong>Создаем файлы по одному</strong> - проверяем каждый шаг</li>
-</ol>
+> "Лучший способ научиться — это делать. Мы создадим полноценный интернет-магазин с нуля!"
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; color: white; margin: 20px 0;">
+<strong>🎯 ЧТО МЫ СОЗДАДИМ:</strong>
+<ul>
+<li>✅ Каталог товаров с категориями</li>
+<li>✅ Корзину покупок на сессиях</li>
+<li>✅ Оформление заказов</li>
+<li>✅ Регистрацию и авторизацию</li>
+<li>✅ Административную панель</li>
+</ul>
 </div>
 
 ---
 
-# 🚀 **НАЧАЛО РАБОТЫ**
+## ⚡ **БЫСТРЫЙ СТАРТ**
 
-## **ЭТАП 0: ПОДГОТОВКА СРЕДЫ**
-
-### 📦 **Шаг 0.1: Создание проекта с нуля**
+> "Сначала сделай просто работающее, потом сделай красиво"
 
 ```bash
-# 1. Создаем папку проекта
-mkdir django_shop
+# 1. Клонируйте и настройте проект
+git clone <репозиторий>
 cd django_shop
-
-# 2. Создаем виртуальное окружение
 python -m venv venv
-
-# 3. Активируем (для Windows PowerShell)
-venv\Scripts\Activate.ps1
-# Если ошибка прав:
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-# И повторяем активацию
-
-# 4. Устанавливаем зависимости
+venv\Scripts\activate
 pip install django pillow
-```
 
-[📖 Подробнее о виртуальных окружениях](https://docs.python.org/3/library/venv.html)
-
----
-
-### 🏗️ **Шаг 0.2: Создание проекта Django**
-
-```bash
-# 1. Создаем проект (точка в конце ОЧЕНЬ важна!)
+# 2. Создайте проект и приложения
 django-admin startproject config .
-
-# 2. Создаем приложения (по одному)
 python manage.py startapp products
 python manage.py startapp cart
 python manage.py startapp orders
 python manage.py startapp users
 
-# 3. Проверяем структуру
-# Должно появиться 4 папки с приложениями
+# 3. Запустите и проверьте
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
 ```
-
-<div align="center">
-<img src="https://media.giphy.com/media/26n7b7PjSOZJwVCmY/giphy.gif" width="300">
-</div>
-
-[📖 О структуре Django проекта](https://docs.djangoproject.com/en/5.2/intro/tutorial01/#creating-a-project)
 
 ---
 
-### ⚙️ **Шаг 0.3: Настройка config/settings.py**
+## 📁 **СТРУКТУРА ПРОЕКТА**
+
+```tree
+django_shop/
+├── config/              # ⚙️ Настройки проекта
+├── products/            # 📦 Товары и категории
+├── cart/                # 🛒 Корзина покупок
+├── orders/              # 📦 Оформление заказов
+├── users/               # 👤 Пользователи
+├── templates/           # 🎨 HTML шаблоны
+├── static/              # 🖼️ Статические файлы
+├── media/               # 📸 Изображения товаров
+└── manage.py            # 🎮 Управляющий скрипт
+```
+
+---
+
+<div style="border-left: 4px solid #4CAF50; padding-left: 15px; margin: 20px 0;">
+<strong>💡 СОВЕТ:</strong> Эта структура соответствует лучшим практикам Django и позволяет легко масштабировать проект.
+</div>
+
+---
+
+## 🚀 **ЭТАП 0: ПОДГОТОВКА СРЕДЫ**
+
+### 🛠️ **Шаг 0.1: Создание проекта с нуля**
+
+```bash
+# Создаем папку и виртуальное окружение
+mkdir django_shop && cd django_shop
+python -m venv venv
+
+# Активируем (Windows PowerShell)
+venv\Scripts\Activate.ps1
+# Если ошибка прав:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# Устанавливаем зависимости
+pip install django pillow
+```
+
+[![PyPI](https://img.shields.io/badge/Django-5.2.10-092E20?style=for-the-badge&logo=django)](https://pypi.org/project/Django/)
+[![Pillow](https://img.shields.io/badge/Pillow-10.0.0-3776AB?style=for-the-badge&logo=python)](https://pypi.org/project/Pillow/)
+
+> 📚 **Ресурсы:**
+> - [Официальная документация Django](https://docs.djangoproject.com/)
+> - [Руководство по виртуальным окружениям](https://docs.python.org/3/library/venv.html)
+> - [Установка Pillow для работы с изображениями](https://pillow.readthedocs.io/)
+
+---
+
+### ⚙️ **Шаг 0.2: Создание проекта и приложений**
+
+```bash
+# Создаем проект (точка в конце ВАЖНА!)
+django-admin startproject config .
+
+# Создаем приложения по одному
+python manage.py startapp products
+python manage.py startapp cart  
+python manage.py startapp orders
+python manage.py startapp users
+
+# Проверяем структуру
+# Должно появиться 4 папки с приложениями
+```
+
+> 🎯 **Важно:** Каждое приложение отвечает за свою часть функционала:
+> - **products** - товары и категории
+> - **cart** - корзина покупок
+> - **orders** - оформление заказов
+> - **users** - регистрация и авторизация
+
+---
+
+### 🔧 **Шаг 0.3: Настройка config/settings.py**
 
 ```python
-# config/settings.py
+# config/settings.py - ключевые настройки
 
-# 1. Добавляем приложения в INSTALLED_APPS
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,7 +163,10 @@ INSTALLED_APPS = [
     'users',
 ]
 
-# 2. В конец файла добавляем настройки статики
+# ⚠️ ВАЖНО: НЕ добавляем AUTH_USER_MODEL!
+# Используем стандартную модель пользователя
+
+# Настройки статических и медиа файлов
 import os
 
 STATIC_URL = 'static/'
@@ -131,57 +175,56 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# 3. Для корзины добавляем
+# Для корзины
 CART_SESSION_ID = 'cart'
+
+# Для аутентификации
+LOGIN_REDIRECT_URL = 'product_list'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'product_list'
 ```
 
-[📖 О настройках Django](https://docs.djangoproject.com/en/5.2/ref/settings/)
+[![Settings](https://img.shields.io/badge/Django_Settings-Important-FF6B6B?style=flat-square)](https://docs.djangoproject.com/en/5.2/ref/settings/)
+
+> 📖 **Подробнее:**
+> - [Настройки Django](https://docs.djangoproject.com/en/5.2/ref/settings/)
+> - [Работа со статическими файлами](https://docs.djangoproject.com/en/5.2/howto/static-files/)
+> - [Настройка медиа файлов](https://docs.djangoproject.com/en/5.2/topics/files/)
 
 ---
 
-### 🗄️ **Шаг 0.4: Первичная настройка базы данных**
+### 🗄️ **Шаг 0.4: Первичная миграция и суперпользователь**
 
 ```bash
-# 1. Применяем миграции
+# Применяем стандартные миграции
 python manage.py migrate
 
-# 2. Создаем суперпользователя
+# Создаем суперпользователя для админки
 python manage.py createsuperuser
-# Вводим: admin, admin@example.com, пароль (запомните!)
+# Вводим: admin, admin@example.com, пароль
 
-# 3. Запускаем сервер
+# Запускаем сервер для проверки
 python manage.py runserver
-
-# 4. Открываем в браузере:
-# Главная: http://127.0.0.1:8000/
-# Админка: http://127.0.0.1:8000/admin/
 ```
 
 <div align="center">
 
-![Запуск Django](https://media.giphy.com/media/3o7abAHdYvZdBNnGZq/giphy.gif)
+![Django Admin](https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif)
 
-*Успешный запуск сервера*
+*Админка Django после входа*
 </div>
 
-[📖 О миграциях в Django](https://docs.djangoproject.com/en/5.2/topics/migrations/)
+> ✅ **Проверка:**
+> 1. Откройте http://127.0.0.1:8000/ - страница Django
+> 2. Откройте http://127.0.0.1:8000/admin/ - войдите
+> 3. Убедитесь, что админка доступна
+
+[![Migrations](https://img.shields.io/badge/Migrations-✅-4CAF50?style=flat-square)](https://docs.djangoproject.com/en/5.2/topics/migrations/)
 
 ---
 
-## ✅ **ПРОВЕРКА ЭТАПА 0**
+## 📦 **ЭТАП 1: МОДЕЛИ ТОВАРОВ**
 
-- [ ] ✔️ Сервер запускается без ошибок
-- [ ] ✔️ Видна стартовая страница Django
-- [ ] ✔️ Можно войти в админку
-- [ ] ✔️ Структура проекта создана
-
----
-
-# 📦 **ЭТАП 1: МОДЕЛИ ТОВАРОВ (PRODUCTS)**
-
-<div align="center">
-<img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" width="400">
-</div>
 
 ### 🏷️ **Шаг 1.1: Создание моделей Category и Product**
 
@@ -232,17 +275,21 @@ class Product(models.Model):
         return reverse('product_detail', args=[self.id, self.slug])
 ```
 
-**🔑 Ключевые моменты:**
-- `ForeignKey` - связь товара с категорией
-- `ImageField` - для картинок (нужен Pillow)
-- `SlugField` - для красивых URL
-- `get_absolute_url()` - получение URL объекта
+[![Models](https://img.shields.io/badge/Django_Models-📦-2196F3?style=for-the-badge)](https://docs.djangoproject.com/en/5.2/topics/db/models/)
 
-[📖 О моделях Django](https://docs.djangoproject.com/en/5.2/topics/db/models/)
+<div style="background: #fff3cd; padding: 15px; border-radius: 5px; border-left: 4px solid #ffc107; margin: 20px 0;">
+⚠️ <strong>ИСПРАВЛЕННАЯ ОШИБКА:</strong> В предыдущей версии использовался <code>index_together</code>, который устарел в Django 5.x. Теперь это исправлено!
+</div>
+
+> 🔑 **Ключевые моменты:**
+> - `ForeignKey` - связь "многие к одному" (товар → категория)
+> - `ImageField` - для изображений (требует Pillow)
+> - `SlugField` - для ЧПУ (человеко-понятных URL)
+> - `get_absolute_url()` - метод для получения URL объекта
 
 ---
 
-### 🛠️ **Шаг 1.2: Регистрация моделей в админке**
+### 🎮 **Шаг 1.2: Регистрация в админке**
 
 **Файл:** `products/admin.py`
 
@@ -263,56 +310,48 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 ```
 
-[📖 Об админке Django](https://docs.djangoproject.com/en/5.2/ref/contrib/admin/)
+[![Admin](https://img.shields.io/badge/Django_Admin-⚡-FF5722?style=flat-square)](https://docs.djangoproject.com/en/5.2/ref/contrib/admin/)
+
 
 ---
 
 ### 🔄 **Шаг 1.3: Создание и применение миграций**
 
 ```bash
-# 1. Создаем миграции для products
+# Создаем миграции для products
 python manage.py makemigrations products
 
-# 2. Применяем миграции
+# Применяем миграции
 python manage.py migrate
 
-# 3. Перезапускаем сервер
+# Проверяем, что все создалось
 python manage.py runserver
 ```
 
-<div style="background: #d1ecf1; padding: 15px; border-radius: 5px; border-left: 4px solid #0c5460; margin: 20px 0;">
-💡 <strong>Совет:</strong> Если видите ошибку про <code>index_together</code> - уберите эту строку из models.py
-</div>
+[![Migrations](https://img.shields.io/badge/Migrations-🔄-9C27B0?style=flat-square)](https://docs.djangoproject.com/en/5.2/topics/migrations/)
+
+> 📊 **Что создается в базе данных:**
+> - Таблица `products_category` для категорий
+> - Таблица `products_product` для товаров
+> - Связи между таблицами
 
 ---
 
-### 🎮 **Шаг 1.4: Тестирование в админке**
+### 🎯 **Шаг 1.4: Тестирование в админке**
 
 1. Откройте http://127.0.0.1:8000/admin/
-2. Войдите как суперпользователь
-3. Создайте 2-3 категории:
-   - 📱 Ноутбуки
-   - 📲 Смартфоны
-   - 🎧 Наушники
-4. Добавьте 4-5 товаров с изображениями
+2. В разделе "Products" создайте:
+   - 📱 **Категории:** Ноутбуки, Смартфоны, Наушники
+   - 💻 **Товары:** 4-5 товаров с изображениями и ценами
+   - 🏷️ **Цены:** от 5000 до 100000 рублей
 
-<div align="center">
-
-*Процесс создания товаров*
+<div style="background: #d1ecf1; padding: 15px; border-radius: 5px; border-left: 4px solid #0c5460; margin: 20px 0;">
+💡 <strong>Совет:</strong> Используйте реальные данные для тестирования. Это поможет лучше понять работу приложения.
 </div>
 
 ---
 
-## ✅ **ПРОВЕРКА ЭТАПА 1**
-
-- [ ] ✔️ Модели созданы без ошибок
-- [ ] ✔️ Категории и товары видны в админке
-- [ ] ✔️ Можно создавать/редактировать товары
-- [ ] ✔️ Изображения загружаются
-
----
-
-# 🏗️ **ЭТАП 2: ШАБЛОНЫ И ПРЕДСТАВЛЕНИЯ**
+## 🏗️ **ЭТАП 2: ШАБЛОНЫ И ПРЕДСТАВЛЕНИЯ**
 
 
 ### 📂 **Шаг 2.1: Создание структуры папок**
@@ -333,14 +372,33 @@ mkdir static\images
 # в static/images/no-image.png
 ```
 
+> 📁 **Структура шаблонов:**
+> ```
+> templates/
+> ├── base.html              # 🎨 Базовый шаблон
+> ├── products/
+> │   ├── list.html         # 📋 Список товаров
+> │   └── detail.html       # 🔍 Детальная страница
+> ├── cart/
+> │   └── detail.html       # 🛒 Корзина покупок
+> ├── orders/
+> │   ├── create.html       # 📝 Оформление заказа
+> │   └── created.html      # ✅ Подтверждение заказа
+> └── users/
+>     ├── login.html        # 🔑 Вход
+>     ├── register.html     # 📝 Регистрация
+>     └── profile.html      # 👤 Профиль пользователя
+> ```
+
+[![Templates](https://img.shields.io/badge/Django_Templates-🎨-FF9800?style=flat-square)](https://docs.djangoproject.com/en/5.2/topics/templates/)
+
 ---
 
-### ⚙️ **Шаг 2.2: Настройка TEMPLATES в settings.py**
+### ⚙️ **Шаг 2.2: Настройка шаблонов в settings.py**
 
 ```python
-# config/settings.py
+# config/settings.py - настройка TEMPLATES
 
-# В разделе TEMPLATES исправляем:
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -352,121 +410,39 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # Наши контекстные процессоры добавим позже
+                'products.context_processors.categories',  # Добавим позже
+                'cart.context_processors.cart',           # Добавим позже
             ],
         },
     },
 ]
 ```
 
-[📖 О шаблонах Django](https://docs.djangoproject.com/en/5.2/topics/templates/)
-
 ---
 
-### 🎨 **Шаг 2.3: Базовый шаблон (base.html)**
+### 🎨 **Шаг 2.3: Работа с шаблонами HTML**
 
-**Файл:** `templates/base.html`
+> 📝 **Важно:** Мы не пишем полный код шаблонов здесь, а описываем их структуру и ключевые моменты.
 
-```html
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Магазин Django{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .product-card-img {
-            height: 200px;
-            object-fit: cover;
-        }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-    </style>
-</head>
-<body>
-    <!-- Навигация -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'product_list' %}">
-                🛍️ DjangoShop
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'product_list' %}">Все товары</a>
-                    </li>
-                    <!-- Категории добавятся через контекстный процессор -->
-                </ul>
-                
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cart_detail' %}">
-                            🛒 Корзина
-                            <span id="cart-counter" class="badge bg-danger"></span>
-                        </a>
-                    </li>
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">👤 {{ user.username }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">🚪 Выйти</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">🔑 Войти</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'register' %}">📝 Регистрация</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
+**Шаблоны, которые нужно создать:**
 
-    <!-- Контент -->
-    <div class="container mt-4">
-        {% block content %}
-        <!-- Здесь будет контент конкретной страницы -->
-        {% endblock %}
-    </div>
+| Шаблон | Путь | Назначение |
+|--------|------|------------|
+| **Базовый шаблон** | `templates/base.html` | Основная разметка, навигация |
+| **Список товаров** | `templates/products/list.html` | Отображение товаров сеткой |
+| **Детальная страница** | `templates/products/detail.html` | Полная информация о товаре |
 
-    <!-- Подвал -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            <p>© 2024 DjangoShop. Все права защищены.</p>
-        </div>
-    </footer>
-
-    <!-- Скрипты -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Простая анимация для кнопок
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
-                    this.style.transition = 'transform 0.2s';
-                });
-                btn.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                });
-            });
-        });
-    </script>
-</body>
-</html>
-```
+<div style="border-left: 4px solid #2196F3; padding-left: 15px; margin: 20px 0;">
+<strong>💡 Ключевые теги Django для шаблонов:</strong>
+<ul>
+<li><code>{% extends "base.html" %}</code> - наследование шаблонов</li>
+<li><code>{% block content %}{% endblock %}</code> - блоки контента</li>
+<li><code>{% url 'product_list' %}</code> - генерация URL (БЕЗ namespace!)</li>
+<li><code>{% for product in products %}</code> - циклы</li>
+<li><code>{{ product.name }}</code> - вывод переменных</li>
+<li><code>{% if user.is_authenticated %}</code> - условия</li>
+</ul>
+</div>
 
 ---
 
@@ -484,27 +460,7 @@ def categories(request):
     }
 ```
 
-**Обновляем `settings.py`:**
-```python
-# В TEMPLATES['OPTIONS']['context_processors'] добавляем:
-'products.context_processors.categories',
-```
-
-**Обновляем `base.html` - добавляем категории в навигацию:**
-```html
-<ul class="navbar-nav me-auto">
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'product_list' %}">Все товары</a>
-    </li>
-    {% for category in categories %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'product_list_by_category' category.slug %}">
-            {{ category.name }}
-        </a>
-    </li>
-    {% endfor %}
-</ul>
-```
+> 🎯 **Зачем это нужно:** Чтобы категории были доступны в навигации на всех страницах без явной передачи в каждое представление.
 
 ---
 
@@ -517,10 +473,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 
 def product_list(request, category_slug=None):
-    """
-    Показывает список товаров.
-    Если передан slug категории - показывает только ее товары.
-    """
+    """Отображает список товаров (всех или по категории)"""
     category = None
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
@@ -536,14 +489,12 @@ def product_list(request, category_slug=None):
     })
 
 def product_detail(request, id, slug):
-    """
-    Показывает детальную информацию о товаре.
-    """
+    """Отображает детальную информацию о товаре"""
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     return render(request, 'products/detail.html', {'product': product})
 ```
 
-[📖 О представлениях Django](https://docs.djangoproject.com/en/5.2/topics/http/views/)
+[![Views](https://img.shields.io/badge/Django_Views-🎯-4CAF50?style=flat-square)](https://docs.djangoproject.com/en/5.2/topics/http/views/)
 
 ---
 
@@ -555,7 +506,7 @@ def product_detail(request, id, slug):
 from django.urls import path
 from . import views
 
-# ⚠️ ВАЖНО: БЕЗ app_name! Без пространств имен!
+# ⚠️ ВАЖНО: БЕЗ app_name! Без пространств имен для упрощения!
 urlpatterns = [
     path('', views.product_list, name='product_list'),
     path('<slug:category_slug>/', views.product_list, name='product_list_by_category'),
@@ -563,188 +514,14 @@ urlpatterns = [
 ]
 ```
 
----
-
-### 📋 **Шаг 2.7: Шаблон списка товаров**
-
-**Файл:** `templates/products/list.html`
-
-```html
-{% extends "base.html" %}
-
-{% block title %}
-    {% if category %}{{ category.name }}{% else %}Все товары{% endif %}
-{% endblock %}
-
-{% block content %}
-<div class="row mb-4">
-    <div class="col-12">
-        <h1 class="display-5">
-            {% if category %}
-                {{ category.name }}
-            {% else %}
-                🛒 Все товары
-            {% endif %}
-        </h1>
-        {% if category %}
-            <p class="text-muted">{{ products.count }} товаров в категории</p>
-        {% endif %}
-    </div>
-</div>
-
-<div class="row">
-    {% for product in products %}
-    <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-            <a href="{% url 'product_detail' product.id product.slug %}" class="text-decoration-none">
-                {% if product.image %}
-                    <img src="{{ product.image.url }}" 
-                         class="card-img-top product-card-img" 
-                         alt="{{ product.name }}">
-                {% else %}
-                    <img src="/static/images/no-image.png" 
-                         class="card-img-top product-card-img" 
-                         alt="{{ product.name }}">
-                {% endif %}
-            </a>
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">{{ product.name }}</h5>
-                <p class="card-text text-muted">{{ product.description|truncatechars:100 }}</p>
-                <div class="mt-auto">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="h4 text-primary">{{ product.price }} ₽</span>
-                        <span class="badge {% if product.available %}bg-success{% else %}bg-danger{% endif %}">
-                            {% if product.available %}В наличии{% else %}Нет в наличии{% endif %}
-                        </span>
-                    </div>
-                    <div class="d-grid gap-2 mt-3">
-                        <a href="{% url 'product_detail' product.id product.slug %}" 
-                           class="btn btn-outline-primary">
-                            👁️ Подробнее
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% empty %}
-    <div class="col-12 text-center py-5">
-        <h3>😔 Товары не найдены</h3>
-        <p class="text-muted">Попробуйте выбрать другую категорию</p>
-        <a href="{% url 'product_list' %}" class="btn btn-primary">Вернуться к каталогу</a>
-    </div>
-    {% endfor %}
-</div>
-{% endblock %}
-```
+> 🔗 **Объяснение URL паттернов:**
+> - `''` - главная страница со всеми товарами
+> - `'<slug:category_slug>/'` - товары конкретной категории
+> - `'<int:id>/<slug:slug>/'` - детальная страница товара
 
 ---
 
-### 🔍 **Шаг 2.8: Шаблон детальной страницы товара**
-
-**Файл:** `templates/products/detail.html`
-
-```html
-{% extends "base.html" %}
-
-{% block title %}{{ product.name }}{% endblock %}
-
-{% block content %}
-<div class="row">
-    <!-- Изображение товара -->
-    <div class="col-md-6 mb-4">
-        <div class="card shadow-sm">
-            {% if product.image %}
-                <img src="{{ product.image.url }}" 
-                     class="card-img-top img-fluid rounded" 
-                     alt="{{ product.name }}">
-            {% else %}
-                <img src="/static/images/no-image.png" 
-                     class="card-img-top img-fluid rounded" 
-                     alt="{{ product.name }}">
-            {% endif %}
-        </div>
-    </div>
-    
-    <!-- Информация о товаре -->
-    <div class="col-md-6 mb-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h1 class="card-title">{{ product.name }}</h1>
-                
-                <div class="mb-3">
-                    <span class="badge bg-secondary">{{ product.category.name }}</span>
-                    {% if product.available %}
-                        <span class="badge bg-success">✓ В наличии</span>
-                    {% else %}
-                        <span class="badge bg-danger">✗ Нет в наличии</span>
-                    {% endif %}
-                </div>
-                
-                <p class="card-text lead">{{ product.description }}</p>
-                
-                <div class="d-flex align-items-center mb-4">
-                    <span class="display-6 text-primary me-3">{{ product.price }} ₽</span>
-                </div>
-                
-                <!-- Форма добавления в корзину -->
-                {% if product.available %}
-                <form action="{% url 'cart_add' product.id %}" method="post" class="mt-4">
-                    {% csrf_token %}
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label for="quantity" class="col-form-label">Количество:</label>
-                        </div>
-                        <div class="col-auto">
-                            <div class="input-group" style="width: 150px;">
-                                <button type="button" class="btn btn-outline-secondary" onclick="changeQuantity(-1)">−</button>
-                                <input type="number" id="quantity" name="quantity" 
-                                       value="1" min="1" max="10" 
-                                       class="form-control text-center">
-                                <button type="button" class="btn btn-outline-secondary" onclick="changeQuantity(1)">+</button>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-success btn-lg">
-                                🛒 Добавить в корзину
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                {% endif %}
-                
-                <!-- Навигация -->
-                <div class="mt-4 pt-4 border-top">
-                    <a href="{% url 'product_list_by_category' product.category.slug %}" 
-                       class="btn btn-outline-secondary">
-                        ← Назад в {{ product.category.name }}
-                    </a>
-                    <a href="{% url 'product_list' %}" class="btn btn-outline-primary ms-2">
-                        📋 Все товары
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    function changeQuantity(delta) {
-        const input = document.getElementById('quantity');
-        let value = parseInt(input.value) + delta;
-        if (value < 1) value = 1;
-        if (value > 10) value = 10;
-        input.value = value;
-    }
-</script>
-{% endblock %}
-```
-
----
-
-### 🔗 **Шаг 2.9: Настройка главных URL**
+### 🔗 **Шаг 2.7: Настройка главных URL**
 
 **Файл:** `config/urls.py`
 
@@ -764,33 +541,16 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 
----
-
-## ✅ **ПРОВЕРКА ЭТАПА 2**
-
-```bash
-python manage.py runserver
-```
-
-**Что проверяем:**
-1. http://127.0.0.1:8000/ - список товаров
-2. Клик по товару - переход на детальную страницу
-3. Категории в навигации работают
-4. Изображения отображаются
-5. Нет ошибок в консоли
-
-- [ ] ✔️ Главная страница показывает товары
-- [ ] ✔️ Детальная страница товара работает
-- [ ] ✔️ Категории в меню отображаются
-- [ ] ✔️ Изображения загружаются
-- [ ] ✔️ Нет ошибок "TemplateDoesNotExist"
+<div style="background: #e8f5e9; padding: 15px; border-radius: 5px; border-left: 4px solid #4CAF50; margin: 20px 0;">
+✅ <strong>ПРОВЕРКА:</strong> После этого этапа у вас должна работать главная страница со списком товаров!
+</div>
 
 ---
 
-# 🛒 **ЭТАП 3: КОРЗИНА ПОКУПОК**
+## 🛒 **ЭТАП 3: КОРЗИНА ПОКУПОК**
 
 
-### 🧺 **Шаг 3.1: Класс корзины (работа с сессиями)**
+### 🧺 **Шаг 3.1: Класс корзины (сессионная)**
 
 **Файл:** `cart/cart.py`
 
@@ -800,37 +560,28 @@ from django.conf import settings
 from products.models import Product
 
 class Cart:
-    """
-    Класс для управления корзиной покупок.
-    Использует сессии Django для хранения данных.
-    """
+    """Класс для управления корзиной покупок в сессиях"""
     
     def __init__(self, request):
-        """Инициализация корзины"""
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         
-        # Если корзины нет в сессии - создаем пустую
         if not cart:
             cart = self.session[settings.CART_SESSION_ID] = {}
         
         self.cart = cart
     
-    def add(self, product, quantity=1, update_quantity=False):
-        """Добавить товар в корзину или обновить количество"""
+    def add(self, product, quantity=1):
+        """Добавить товар в корзину"""
         product_id = str(product.id)
         
         if product_id not in self.cart:
             self.cart[product_id] = {
                 'quantity': 0,
-                'price': str(product.price)  # Храним как строку
+                'price': str(product.price)
             }
         
-        if update_quantity:
-            self.cart[product_id]['quantity'] = quantity
-        else:
-            self.cart[product_id]['quantity'] += quantity
-        
+        self.cart[product_id]['quantity'] += quantity
         self.save()
     
     def save(self):
@@ -847,17 +598,12 @@ class Cart:
     def __iter__(self):
         """Итератор по товарам в корзине"""
         product_ids = self.cart.keys()
-        # Получаем объекты товаров из базы
         products = Product.objects.filter(id__in=product_ids)
-        
-        # Создаем копию корзины для безопасной модификации
         cart = self.cart.copy()
         
-        # Добавляем объекты товаров в корзину
         for product in products:
             cart[str(product.id)]['product'] = product
         
-        # Проходим по товарам и рассчитываем суммы
         for item in cart.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price'] * item['quantity']
@@ -880,7 +626,13 @@ class Cart:
         self.save()
 ```
 
-[📖 О сессиях в Django](https://docs.djangoproject.com/en/5.2/topics/http/sessions/)
+[![Sessions](https://img.shields.io/badge/Django_Sessions-🔐-673AB7?style=flat-square)](https://docs.djangoproject.com/en/5.2/topics/http/sessions/)
+
+> 🔒 **Как работает:**
+> - Корзина хранится в сессии пользователя
+> - Каждый товар имеет ID, количество и цену
+> - Сессия сохраняется между запросами
+> - Нет необходимости в модели БД для корзины
 
 ---
 
@@ -896,11 +648,7 @@ def cart(request):
     return {'cart': Cart(request)}
 ```
 
-**Обновляем `settings.py`:**
-```python
-# В TEMPLATES['OPTIONS']['context_processors'] добавляем:
-'cart.context_processors.cart',
-```
+> 🎯 **Результат:** Теперь `{{ cart }}` доступен во всех шаблонах
 
 ---
 
@@ -914,13 +662,11 @@ from django.views.decorators.http import require_POST
 from products.models import Product
 from .cart import Cart
 
-@require_POST  # Разрешаем только POST-запросы
+@require_POST  # Только POST-запросы
 def cart_add(request, product_id):
     """Добавить товар в корзину"""
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-    
-    # Получаем количество из формы
     quantity = int(request.POST.get('quantity', 1))
     
     cart.add(product=product, quantity=quantity)
@@ -962,294 +708,488 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('products.urls')),
     path('cart/', include('cart.urls')),  # ДОБАВЛЯЕМ
-    # Остальные пути будут позже
+    # orders и users добавятся позже
 ]
 ```
 
 ---
 
-### 🛍️ **Шаг 3.5: Шаблон корзины**
+### 🛍️ **Шаг 3.5: Шаблон корзины (основные моменты)**
 
 **Файл:** `templates/cart/detail.html`
 
-```html
-{% extends "base.html" %}
+**Ключевые элементы:**
+1. Таблица с товарами в корзине
+2. Форма удаления товаров (POST запросы)
+3. Подсчет общей стоимости
+4. Ссылки на продолжение покупок
+5. Отображение пустой корзины
 
-{% block title %}🛒 Корзина покупок{% endblock %}
+> 💡 **Совет по реализации:**
+> - Используйте Bootstrap таблицы для красивого отображения
+> - Добавьте иконки для кнопок удаления
+> - Реализуйте подсчет итоговой суммы
+> - Сделайте адаптивный дизайн для мобильных устройств
 
-{% block content %}
-<div class="row">
-    <div class="col-12">
-        <h1 class="display-5 mb-4">🛒 Ваша корзина</h1>
-    </div>
+<div align="center">
+
+![Shopping Cart](https://media.giphy.com/media/3o7TKr3r78bNcLtBna/giphy.gif)
+
+*Работа корзины покупок*
 </div>
 
-{% if cart %}
-<div class="row">
-    <div class="col-lg-8">
-        <div class="card shadow-sm mb-4">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Товар</th>
-                                <th>Количество</th>
-                                <th>Цена</th>
-                                <th>Сумма</th>
-                                <th>Действия</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in cart %}
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        {% if item.product.image %}
-                                            <img src="{{ item.product.image.url }}" 
-                                                 width="60" 
-                                                 class="rounded me-3" 
-                                                 alt="{{ item.product.name }}">
-                                        {% else %}
-                                            <img src="/static/images/no-image.png" 
-                                                 width="60" 
-                                                 class="rounded me-3" 
-                                                 alt="{{ item.product.name }}">
-                                        {% endif %}
-                                        <div>
-                                            <h6 class="mb-0">{{ item.product.name }}</h6>
-                                            <small class="text-muted">{{ item.product.category.name }}</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>{{ item.quantity }}</td>
-                                <td>{{ item.price }} ₽</td>
-                                <td><strong>{{ item.total_price }} ₽</strong></td>
-                                <td>
-                                    <form action="{% url 'cart_remove' item.product.id %}" method="post" class="d-inline">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            ❌ Удалить
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Кнопки действий -->
-        <div class="d-flex justify-content-between mb-5">
-            <a href="{% url 'product_list' %}" class="btn btn-outline-primary">
-                ← Продолжить покупки
-            </a>
-            <form action="#" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">
-                    🗑️ Очистить корзину
-                </button>
-            </form>
-        </div>
-    </div>
+---
+
+## 📦 **ЭТАП 4: ОФОРМЛЕНИЕ ЗАКАЗОВ**
+
+<div align="center">
+<img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="400">
+</div>
+
+### 📝 **Шаг 4.1: Модели заказа**
+
+**Файл:** `orders/models.py`
+
+```python
+from django.db import models
+from django.conf import settings
+from products.models import Product
+
+class Order(models.Model):
+    """Модель заказа"""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, 
+                             null=True, blank=True, verbose_name='Пользователь')
+    first_name = models.CharField(max_length=50, verbose_name='Имя')
+    last_name = models.CharField(max_length=50, verbose_name='Фамилия')
+    email = models.EmailField(verbose_name='Email')
+    address = models.CharField(max_length=250, verbose_name='Адрес')
+    postal_code = models.CharField(max_length=20, verbose_name='Индекс')
+    city = models.CharField(max_length=100, verbose_name='Город')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Обновлен')
+    paid = models.BooleanField(default=False, verbose_name='Оплачен')
     
-    <!-- Итоговая информация -->
-    <div class="col-lg-4">
-        <div class="card shadow-sm sticky-top" style="top: 20px;">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">📋 Итоги заказа</h5>
-            </div>
-            <div class="card-body">
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Товары ({{ cart|length }} шт.)</span>
-                        <span>{{ cart.get_total_price }} ₽</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Доставка</span>
-                        <span class="text-success">Бесплатно</span>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="h5">Итого к оплате:</span>
-                        <span class="h4 text-primary">{{ cart.get_total_price }} ₽</span>
-                    </div>
-                </div>
-                
-                <div class="d-grid gap-2">
-                    <a href="#" class="btn btn-success btn-lg">
-                        💳 Перейти к оформлению
-                    </a>
-                    <a href="{% url 'product_list' %}" class="btn btn-outline-secondary">
-                        Добавить еще товары
-                    </a>
-                </div>
-                
-                <div class="mt-3 text-center">
-                    <small class="text-muted">
-                        <i class="bi bi-shield-check"></i>
-                        Безопасная оплата · Гарантия возврата
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    class Meta:
+        ordering = ('-created',)
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+    
+    def __str__(self):
+        return f'Заказ {self.id}'
+    
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.items.all())
 
-{% else %}
-<!-- Пустая корзина -->
-<div class="row justify-content-center">
-    <div class="col-md-6 text-center py-5">
-        <div class="mb-4">
-            <div style="font-size: 5rem;">🛒</div>
-        </div>
-        <h3>Ваша корзина пуста</h3>
-        <p class="text-muted mb-4">Добавьте товары из каталога, чтобы сделать заказ</p>
-        <a href="{% url 'product_list' %}" class="btn btn-primary btn-lg">
-            🛍️ Перейти к покупкам
-        </a>
-    </div>
-</div>
-{% endif %}
-{% endblock %}
+class OrderItem(models.Model):
+    """Товар в заказе"""
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE, 
+                              verbose_name='Заказ')
+    product = models.ForeignKey(Product, related_name='order_items', 
+                                on_delete=models.CASCADE, verbose_name='Товар')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
+    quantity = models.PositiveIntegerField(default=1, verbose_name='Количество')
+    
+    def __str__(self):
+        return str(self.id)
+    
+    def get_cost(self):
+        return self.price * self.quantity
 ```
+
+[![Models](https://img.shields.io/badge/Order_Models-📝-009688?style=flat-square)](https://docs.djangoproject.com/en/5.2/topics/db/examples/many_to_one/)
+
+> 🔗 **Связи моделей:**
+> - `Order` связан с `User` (необязательно)
+> - `OrderItem` связан с `Order` и `Product`
+> - Один заказ может содержать несколько товаров
 
 ---
 
-### 🔄 **Шаг 3.6: Обновление base.html - счетчик корзины**
-
-```html
-<!-- В templates/base.html обновляем ссылку на корзину: -->
-<a class="nav-link" href="{% url 'cart_detail' %}">
-    🛒 Корзина
-    {% with total_items=cart|length %}
-        {% if total_items > 0 %}
-            <span class="badge bg-danger">{{ total_items }}</span>
-        {% endif %}
-    {% endwith %}
-</a>
-```
-
----
-
-## ✅ **ПРОВЕРКА ЭТАПА 3**
+### 🔄 **Шаг 4.2: Миграции заказов**
 
 ```bash
+# Создаем миграции
+python manage.py makemigrations orders
+
+# Применяем миграции
+python manage.py migrate
+
+# Проверяем создание таблиц
+python manage.py dbshell
+# В SQLite: .tables
+```
+
+---
+
+### 📋 **Шаг 4.3: Форма заказа**
+
+**Файл:** `orders/forms.py`
+
+```python
+from django import forms
+from .models import Order
+
+class OrderCreateForm(forms.ModelForm):
+    """Форма оформления заказа"""
+    class Meta:
+        model = Order
+        fields = ['first_name', 'last_name', 'email', 
+                  'address', 'postal_code', 'city']
+        widgets = {
+            'address': forms.Textarea(attrs={'rows': 3}),
+        }
+```
+
+[![Forms](https://img.shields.io/badge/Django_Forms-📋-795548?style=flat-square)](https://docs.djangoproject.com/en/5.2/topics/forms/)
+
+---
+
+### 🎮 **Шаг 4.4: Представление оформления заказа**
+
+**Файл:** `orders/views.py`
+
+```python
+from django.shortcuts import render
+from .models import OrderItem
+from .forms import OrderCreateForm
+from cart.cart import Cart
+
+def order_create(request):
+    """Оформление заказа из корзины"""
+    cart = Cart(request)
+    
+    if request.method == 'POST':
+        form = OrderCreateForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            
+            # Привязываем заказ к пользователю, если он авторизован
+            if request.user.is_authenticated:
+                order.user = request.user
+            
+            order.save()
+            
+            # Создаем позиции заказа
+            for item in cart:
+                OrderItem.objects.create(
+                    order=order,
+                    product=item['product'],
+                    price=item['price'],
+                    quantity=item['quantity']
+                )
+            
+            # Очищаем корзину
+            cart.clear()
+            
+            return render(request, 'orders/created.html', {'order': order})
+    else:
+        form = OrderCreateForm()
+    
+    return render(request, 'orders/create.html', {'cart': cart, 'form': form})
+```
+
+---
+
+### 🛣️ **Шаг 4.5: URL-маршруты заказов**
+
+**Файл:** `orders/urls.py`
+
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('create/', views.order_create, name='order_create'),
+]
+```
+
+**Обновляем `config/urls.py`:**
+```python
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('products.urls')),
+    path('cart/', include('cart.urls')),
+    path('orders/', include('orders.urls')),  # ДОБАВЛЯЕМ
+]
+```
+
+---
+
+## 👤 **ЭТАП 5: АУТЕНТИФИКАЦИЯ**
+
+<div align="center">
+<img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" width="400">
+</div>
+
+### 📝 **Шаг 5.1: Форма регистрации**
+
+**Файл:** `users/forms.py`
+
+```python
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class UserRegistrationForm(UserCreationForm):
+    """Расширенная форма регистрации с email"""
+    email = forms.EmailField(required=True)
+    
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+    
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
+```
+
+[![Auth](https://img.shields.io/badge/Django_Auth-👤-FF4081?style=flat-square)](https://docs.djangoproject.com/en/5.2/topics/auth/)
+
+---
+
+### 🎮 **Шаг 5.2: Представления пользователей**
+
+**Файл:** `users/views.py`
+
+```python
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from .forms import UserRegistrationForm
+from orders.models import Order
+
+def register(request):
+    """Регистрация нового пользователя"""
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Автоматический вход после регистрации
+            return redirect('product_list')
+    else:
+        form = UserRegistrationForm()
+    
+    return render(request, 'users/register.html', {'form': form})
+
+@login_required
+def profile(request):
+    """Профиль пользователя с историей заказов"""
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'users/profile.html', {'orders': orders})
+```
+
+---
+
+### 🛣️ **Шаг 5.3: URL-маршруты пользователей**
+
+**Файл:** `users/urls.py`
+
+```python
+from django.urls import path
+from django.contrib.auth import views as auth_views
+from . import views
+
+urlpatterns = [
+    path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(
+        template_name='users/login.html'
+    ), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(
+        next_page='product_list'
+    ), name='logout'),
+    path('profile/', views.profile, name='profile'),
+]
+```
+
+**Обновляем `config/urls.py`:**
+```python
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('products.urls')),
+    path('cart/', include('cart.urls')),
+    path('orders/', include('orders.urls')),
+    path('users/', include('users.urls')),  # ДОБАВЛЯЕМ
+]
+```
+
+---
+
+## 🔧 **ЭТАП 6: ФИНАЛЬНАЯ НАСТРОЙКА**
+
+<div align="center">
+<img src="https://media.giphy.com/media/3o7TKsQ8gTp3WqXqjq/giphy.gif" width="400">
+</div>
+
+### 🎨 **Шаг 6.1: Создание базовых шаблонов**
+
+**Структура шаблонов для реализации:**
+
+| Шаблон | Путь | Описание |
+|--------|------|----------|
+| **Базовый шаблон** | `templates/base.html` | Основная разметка с навигацией |
+| **Логин** | `templates/users/login.html` | Форма входа |
+| **Регистрация** | `templates/users/register.html` | Форма регистрации |
+| **Профиль** | `templates/users/profile.html` | История заказов |
+| **Оформление заказа** | `templates/orders/create.html` | Форма заказа |
+| **Подтверждение** | `templates/orders/created.html` | Успешное оформление |
+
+> 💡 **Советы по дизайну:**
+> - Используйте Bootstrap 5 для стилизации
+> - Добавьте иконки для наглядности
+> - Сделайте адаптивный дизайн
+> - Используйте карточки для товаров
+
+---
+
+### 🧪 **Шаг 6.2: Тестирование всего функционала**
+
+```bash
+# Запускаем сервер
 python manage.py runserver
 ```
 
-**Что проверяем:**
-1. На странице товара кнопка "Добавить в корзину"
-2. Товар добавляется в корзину
-3. Счетчик в навигации обновляется
-4. Страница /cart/ показывает добавленные товары
-5. Можно удалить товар из корзины
+**Проверяем по порядку:**
 
-- [ ] ✔️ Товары добавляются в корзину
-- [ ] ✔️ Корзина сохраняется между страницами
-- [ ] ✔️ Счетчик обновляется
-- [ ] ✔️ Можно удалять товары
-- [ ] ✔️ Общая стоимость рассчитывается
+1. **Главная страница:** http://127.0.0.1:8000/
+   - Проверяем список товаров
+   - Переход по категориям
+   - Детальные страницы товаров
+
+2. **Корзина:** http://127.0.0.1:8000/cart/
+   - Добавление товаров в корзину
+   - Удаление из корзины
+   - Подсчет общей суммы
+
+3. **Аутентификация:**
+   - Регистрация: http://127.0.0.1:8000/users/register/
+   - Вход: http://127.0.0.1:8000/users/login/
+   - Профиль: http://127.0.0.1:8000/users/profile/
+
+4. **Заказы:**
+   - Оформление: http://127.0.0.1:8000/orders/create/
+   - Проверка в админке
+
+5. **Админка:** http://127.0.0.1:8000/admin/
+   - Управление товарами
+   - Просмотр заказов
+   - Управление пользователями
 
 ---
 
+### 🐛 **Шаг 6.3: Решение распространенных проблем**
+
+<div style="background: #ffebee; padding: 15px; border-radius: 5px; border-left: 4px solid #f44336; margin: 20px 0;">
+⚠️ <strong>ЧАСТЫЕ ОШИБКИ И РЕШЕНИЯ</strong>
+</div>
+
+| Ошибка | Причина | Решение |
+|--------|---------|---------|
+| `TemplateDoesNotExist` | Неправильный путь к шаблонам | Проверить `TEMPLATES['DIRS']` в settings.py |
+| `No module named 'app.urls'` | Файл urls.py не создан | Создать файл `app/urls.py` |
+| `'index_together' is invalid` | Устаревший атрибут в Django 5 | Удалить `index_together` из models.py |
+| `'products' is not a registered namespace` | Использование namespace в URL | Использовать `{% url 'product_list' %}` вместо `{% url 'products:product_list' %}` |
+| `OperationalError: no such table` | Миграции не применены | Выполнить `makemigrations` и `migrate` |
+
+---
+
+## ✅ **ЧЕК-ЛИСТ ГОТОВНОСТИ ПРОЕКТА**
+
 <div align="center">
 
-<em>🎉 Поздравляем! Базовая версия магазина готова!</em>
+![Checklist](https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif)
+
+</div>
+
+### 🎯 **БАЗОВЫЙ ФУНКЦИОНАЛ:**
+- [ ] ✅ Сервер запускается без ошибок
+- [ ] ✅ Админка доступна и работает
+- [ ] ✅ Категории и товары отображаются
+- [ ] ✅ Можно перейти на детальную страницу товара
+
+### 🛒 **КОРЗИНА:**
+- [ ] ✅ Товары добавляются в корзину
+- [ ] ✅ Корзина сохраняется между страницами
+- [ ] ✅ Можно удалять товары из корзины
+- [ ] ✅ Счетчик в навигации работает
+
+### 👤 **ПОЛЬЗОВАТЕЛИ:**
+- [ ] ✅ Регистрация работает
+- [ ] ✅ Вход и выход работают
+- [ ] ✅ Профиль показывает историю заказов
+
+### 📦 **ЗАКАЗЫ:**
+- [ ] ✅ Оформление заказа из корзины
+- [ ] ✅ Заказы сохраняются в базе данных
+- [ ] ✅ Корзина очищается после заказа
+- [ ] ✅ Заказы видны в админке
+
+---
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 10px; color: white; text-align: center; margin: 30px 0;">
+<h2>🎉 ПОЗДРАВЛЯЮ! ВЫ СОЗДАЛИ ИНТЕРНЕТ-МАГАЗИН НА DJANGO!</h2>
+<p>Теперь у вас есть полноценный рабочий прототип, который можно развивать дальше.</p>
 </div>
 
 ---
 
-## 📋 **СВОДКА СОЗДАННОГО**
+## 🚀 **ДОПОЛНИТЕЛЬНЫЕ ВОЗМОЖНОСТИ**
 
-### ✅ **Что уже работает:**
-1. **Админка Django** - управление товарами
-2. **Каталог товаров** - категории и товары
-3. **Детальные страницы** - информация о товарах
-4. **Корзина покупок** - добавление/удаление
-5. **Сессионное хранение** - корзина сохраняется
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
 
-### 🔄 **Что будет дальше:**
-1. **ЭТАП 4:** Модели заказов
-2. **ЭТАП 5:** Оформление заказа из корзины
-3. **ЭТАП 6:** Регистрация и авторизация
-4. **ЭТАП 7:** Профиль пользователя
-5. **ЭТАП 8:** Финальная настройка
+<div style="background: #E3F2FD; padding: 20px; border-radius: 10px;">
+<h3>📊 Пагинация товаров</h3>
+<p>Добавить постраничную навигацию для каталога</p>
+<code>from django.core.paginator import Paginator</code>
+</div>
 
----
+<div style="background: #F3E5F5; padding: 20px; border-radius: 10px;">
+<h3>🔍 Поиск по товарам</h3>
+<p>Реализовать поиск по названию и описанию</p>
+<code>Product.objects.filter(name__icontains=query)</code>
+</div>
 
-## 🆘 **ЕСЛИ ВОЗНИКЛИ ПРОБЛЕМЫ**
+<div style="background: #E8F5E9; padding: 20px; border-radius: 10px;">
+<h3>⭐ Отзывы и рейтинги</h3>
+<p>Добавить возможность оставлять отзывы</p>
+<code>class Review(models.Model):</code>
+</div>
 
-### **Распространенные ошибки и решения:**
-
-| Ошибка | Решение |
-|--------|---------|
-| `TemplateDoesNotExist` | Проверьте `TEMPLATES['DIRS']` в settings.py |
-| `No module named 'app.urls'` | Создайте файл `app/urls.py` |
-| `'index_together' is invalid` | Удалите эту строку из models.py |
-| `'products' is not a registered namespace` | Не используйте `products:` в `{% url %}` |
-| `OperationalError: no such table` | Выполните `makemigrations` и `migrate` |
-
-### **Проверочные команды:**
-```bash
-# Проверить все URL
-python manage.py show_urls
-
-# Проверить миграции
-python manage.py showmigrations
-
-# Создать дамп данных (если нужно сохранить)
-python manage.py dumpdata products --indent 2 > products.json
-```
-
----
-
-## 🎓 **РЕКОМЕНДАЦИИ ДЛЯ УРОКА**
-
-### **Для учителя:**
-1. **Объясняйте каждый шаг** - что и зачем делаем
-2. **Показывайте ошибки вживую** - это ценный опыт
-3. **Делайте паузы** - дайте ученикам повторить
-4. **Проверяйте вместе** - после каждого этапа
-
-### **Для учеников:**
-1. **Создавайте файлы по одному**
-2. **Проверяйте после каждого шага**
-3. **Читайте ошибки** - они говорят, что не так
-4. **Не бойтесь ошибаться** - это часть обучения
-
----
-
-<div align="center">
-
-![Успех](https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif)
-
-## 🎉 **ГОТОВЫ ПРОДОЛЖИТЬ?**
-
-**Следующий этап:** Создание моделей заказов и оформление покупки!
-
----
-
-### 📚 **ПОЛЕЗНЫЕ ССЫЛКИ**
-
-- [📘 Официальная документация Django](https://docs.djangoproject.com/)
-- [🎥 Видеоуроки Django для начинающих](https://www.youtube.com/watch?v=F5mRW0jo-U4)
-- [💾 Исходный код этого проекта](https://github.com/)
-- [❓ Вопросы и ответы по Django](https://stackoverflow.com/questions/tagged/django)
+<div style="background: #FFF3E0; padding: 20px; border-radius: 10px;">
+<h3>🎁 Скидки и промокоды</h3>
+<p>Система скидок и промокодов</p>
+<code>class Discount(models.Model):</code>
+</div>
 
 </div>
 
 ---
 
-**Автор:** @Gabryelf  
-**Версия:** 2.0 (исправленная)  
-**Дата:** Январь 2026  
-**Лицензия:** MIT  
+## 📚 **РЕКОМЕНДУЕМЫЕ РЕСУРСЫ**
+
+<div align="center">
+
+[![Django Docs](https://img.shields.io/badge/Django_Documentation-092E20?style=for-the-badge&logo=django&logoColor=white)](https://docs.djangoproject.com/)
+[![Django Girls](https://img.shields.io/badge/Django_Girls_Tutorial-F37626?style=for-the-badge&logo=django&logoColor=white)](https://tutorial.djangogirls.org/)
+[![MDN Django](https://img.shields.io/badge/MDN_Django_Tutorial-000000?style=for-the-badge&logo=mdnwebdocs&logoColor=white)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+[![Real Python](https://img.shields.io/badge/Real_Python_Django-FF6B6B?style=for-the-badge&logo=python&logoColor=white)](https://realpython.com/tutorials/django/)
+
+</div>
+
+---
+
+<div style="text-align: center; margin-top: 50px; padding: 20px; border-top: 2px solid #eee;">
+<p><strong>🎓 Учебное пособие по Django</strong></p>
+<p>Версия 3.0 • Обновлено: Январь 2026 • Автор: @Gabryelf</p>
+<p>Если это руководство помогло — поделитесь с коллегами! 🚀</p>
+</div>
 
 ---
 
 <div align="center">
-⭐ <strong>Если это руководство помогло - сохраните его!</strong> ⭐
+<img src="https://media.giphy.com/media/26n7b7PjSOZJwVCmY/giphy.gif" width="200">
+<br>
+<strong>Удачи в разработке! 🚀</strong>
 </div>
