@@ -4,10 +4,10 @@
 
 ![Магазин на Django](https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif)
 
-![Готовые шаблоны проекта](DjangoProject/django_shop)
+[Готовые шаблоны проекта](https://github.com/Gabryelf/First_Steps_Python.git)
 
-> "Скопируйте проект на компьютер и достаньте папку django_shop - в ней модель и фронтенд"
-> "Начните проект в Pycharm выбрав папку django_shop в качестве root папки проекта"
+> " шаг 1 **Перейдите по ссылке** шаг 2 **Скопируйте проект на компьютер и достаньте папку django_shop - в ней модель и фронтенд**
+> шаг 3 **Начните проект в Pycharm выбрав папку django_shop в качестве root папки проекта** "
 
 </div>
 
