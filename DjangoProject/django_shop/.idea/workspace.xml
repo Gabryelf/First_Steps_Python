@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="584122d5-0c87-4461-831a-a5a9931ebd8f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/django_shop.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/cart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/context_processors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/context_processors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/products/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/products/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="38RIXm4UcJu2r1hK6iczo8YzlRe" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "preferences.keymap"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="584122d5-0c87-4461-831a-a5a9931ebd8f" name="Changes" comment="" />
+      <created>1768755998646</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1768755998646</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

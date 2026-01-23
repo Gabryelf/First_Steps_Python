@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Все товары{% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>{% if category %}{{ category.name }}{% else %}Все товары{% endif %}</h1>
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <!-- ИЗМЕНИЛИ: убрали products: -->
+                <a href="{% url 'product_detail' product.id product.slug %}">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                        <img src="/static/images/no-image.png" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+                    <div class="mt-auto">
+                        <p class="fw-bold">{{ product.price }} руб.</p>
+                        <!-- ИЗМЕНИЛИ: убрали products: -->
+                        <a href="{% url 'product_detail' product.id product.slug %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p>Товары не найдены.</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
