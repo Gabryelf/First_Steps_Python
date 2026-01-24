@@ -304,46 +304,6 @@ if result:
     print(f"\n📊 Статистика: {result['h1_count']} заголовков, {result['links_count']} ссылок")
 ```
 
-## **7. ПРАКТИЧЕСКОЕ ЗАДАНИЕ ДЛЯ СТУДЕНТОВ**
-
-```python
-# student_task.py
-import requests
-from bs4 import BeautifulSoup
-
-def student_parser():
-    """
-    Задание для студентов: улучшить парсер
-    """
-    url = "https://python.org"
-    
-    # TODO 1: Получить страницу
-    response = requests.get(url)
-    
-    # TODO 2: Создать BeautifulSoup объект
-    
-    # TODO 3: Найти все заголовки <h2>
-    
-    # TODO 4: Вывести результаты
-    
-    # TODO 5*: Сохранить результаты в файл
-    
-    pass
-
-# БОНУС: Парсер для поиска email на странице
-def find_emails(url):
-    response = requests.get(url)
-    text = response.text
-    
-    # Регулярное выражение для email
-    import re
-    email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
-    emails = re.findall(email_pattern, text)
-    
-    print(f"📧 Найдено email: {len(emails)}")
-    return emails
-```
-
 ## **🚀 БЫСТРЫЙ СТАРТ:**
 
 ### **1. Установка (в терминале):**
@@ -373,7 +333,7 @@ for title in titles:
 python parser.py
 ```
 
-## **🎯 ЧТО СТУДЕНТЫ УВИДЯТ:**
+## **🎯 ЧТО В ИТОГЕ:**
 
 1. **Вводят URL** → получают реальные данные с сайта
 2. **Выбирают что искать** → видят результат сразу
