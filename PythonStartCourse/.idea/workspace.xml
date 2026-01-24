@@ -5,82 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cf7e3c2-de50-4809-8020-cb8f0ad607bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/.idea/django_shop.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/cart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/context_processors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/cart/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/config/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/config/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/config/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/config/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/config/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/manage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/orders/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/context_processors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/products/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/templates/products/detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/templates/products/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/users/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/users/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/users/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/users/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/users/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/users/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/users/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/users/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/users/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_game/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_game/heads_and_tails.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/algorithm_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/algorithm_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/algorithm_3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/algorithm_4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/lite_player_music/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/lite_player_music/player_core.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/lite_player_music/run.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/lite_player_music/simple_menu.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/lite_player_music/song_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/music_player/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/music_player/music_player.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/start_algorithms/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/start_algorithms/lists_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../algorithms_logic/start_algorithms/lists_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DjangoProject/django_shop/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../DjangoProject/django_shop/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PythonStartCourse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonStartCourse.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,13 +23,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
