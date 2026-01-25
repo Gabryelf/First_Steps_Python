@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ product.name }}</td>
                         <td>
-                            <form action="{% url 'cart:cart_add' product.id %}" method="post" class="d-inline">
+                            <form action="{% url 'cart_add' product.id %}" method="post" class="d-inline">
                                 {% csrf_token %}
                                 {{ item.update_quantity_form.quantity }}
                                 {{ item.update_quantity_form.override }}
@@ -31,7 +31,7 @@
                         <td>{{ item.price }} руб.</td>
                         <td>{{ item.total_price }} руб.</td>
                         <td>
-                            <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                            <form action="{% url 'cart_remove' product.id %}" method="post">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
                             </form>
@@ -48,11 +48,11 @@
             </tfoot>
         </table>
         <div class="text-end">
-            <a href="{% url 'products:product_list' %}" class="btn btn-secondary">Продолжить покупки</a>
-            <a href="{% url 'orders:order_create' %}" class="btn btn-success">Оформить заказ</a>
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">Продолжить покупки</a>
+            <a href="{% url 'order_create' %}" class="btn btn-success">Оформить заказ</a>
         </div>
     {% else %}
         <p>Ваша корзина пуста.</p>
-        <a href="{% url 'products:product_list' %}" class="btn btn-primary">Вернуться к покупкам</a>
+        <a href="{% url 'product_list' %}" class="btn btn-primary">Вернуться к покупкам</a>
     {% endif %}
 {% endblock %}

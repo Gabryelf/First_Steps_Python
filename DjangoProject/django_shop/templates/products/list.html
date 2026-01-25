@@ -11,7 +11,7 @@
         {% for product in products %}
         <div class="col-md-4 mb-4">
             <div class="card h-100">
-                <!-- ИЗМЕНИЛИ: убрали products: -->
+
                 <a href="{% url 'product_detail' product.id product.slug %}">
                     {% if product.image %}
                         <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
@@ -24,7 +24,7 @@
                     <p class="card-text">{{ product.description|truncatewords:20 }}</p>
                     <div class="mt-auto">
                         <p class="fw-bold">{{ product.price }} руб.</p>
-                        <!-- ИЗМЕНИЛИ: убрали products: -->
+
                         <a href="{% url 'product_detail' product.id product.slug %}" class="btn btn-primary">Подробнее</a>
                     </div>
                 </div>
