@@ -52,52 +52,26 @@ temp_down = lambda: change_param('темп', modes[current_mode]['темп'] - 1
 def run_smart_home():  # Основной цикл
     print("=== УМНЫЙ ДОМ ===")  # Заголовок
 
-    while True:  # Бесконечный цикл
-        print("\nКоманды: режим, свет, музыка, темп, свет_вкл, свет_выкл, темп+, темп-, помощь, выход")
-        cmd = input("> ").lower().strip()  # Ввод команды
+    while True:
+        cmd = input("> ").lower().strip()  # Убрал .split() здесь
 
-        if not cmd:  # Пустая команда
-            continue  # Пропуск
+        if not cmd:
+            continue
 
-        match cmd.split():  # Разбор команды
-            case ['режим', mode] if mode in modes:  # Смена режима
-                change_mode(mode)
-            case ['режим', _]:
-                print(f"Доступные режимы: {', '.join(modes.keys())}")
+        # Разделяем команду на части для анализа
+        parts = cmd.split()
 
-            case ['свет', state] if state in ['вкл', 'выкл', 'ярко', 'тускло']:  # Свет
-                change_param('свет', state)
-            case ['свет', _]:
-                print("Состояния света: вкл, выкл, ярко, тускло")
-
-            case ['музыка', state] if state in ['вкл', 'выкл']:  # Музыка
-                change_param('музыка', state)
-            case ['музыка', _]:
-                print("Состояния музыки: вкл, выкл")
-
-            case ['темп', temp] if temp.isdigit():  # Температура
-                change_param('темп', int(temp))
-            case ['темп', _]:
-                print("Укажите число для температуры")
-
-            case ['свет_вкл']:  # Быстрые команды
+        # Используем match с первым словом команды
+        match parts[0]:
+            case 'light_on':
                 light_on()
-            case ['свет_выкл']:
-                light_off()
-            case ['темп+']:
-                temp_up()
-            case ['темп-']:
-                temp_down()
 
-            case ['помощь']:  # Помощь
-                print("Введите команду из списка выше")
-
-            case ['выход']:  # Выход
-                print("До свидания!")
+            case 'exit':
+                print("Выход из программы")
                 break
 
             case _:  # Неизвестная команда
-                print(f"Неизвестная команда. Введите 'помощь' для списка команд")
+                print(f"Неизвестная команда '{cmd}'. Доступные: light_on, exit")
 
 
 # === ЗАПУСК ===
