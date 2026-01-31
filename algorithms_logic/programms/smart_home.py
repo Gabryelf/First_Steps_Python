@@ -42,6 +42,7 @@ def change_param(param, value):  # Изменение параметра
 
 
 # Лямбда-функции для быстрого изменения
+day = lambda: change_mode('day')
 light_on = lambda: change_param('свет', 'вкл')  # Включить свет
 light_off = lambda: change_param('свет', 'выкл')  # Выключить свет
 temp_up = lambda: change_param('темп', modes[current_mode]['темп'] + 1)  # Температура+
@@ -63,6 +64,9 @@ def run_smart_home():  # Основной цикл
 
         # Используем match с первым словом команды
         match parts[0]:
+            case 'day':
+                day()
+                
             case 'light_on':
                 light_on()
 
