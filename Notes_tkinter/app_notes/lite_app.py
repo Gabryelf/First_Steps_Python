@@ -1,9 +1,13 @@
+from decorators import log_action
+import storage
+import utils
+
 notes = []
 next_id = 1
 
 
 def show_menu():
-    """Показывает меню программы"""
+    """Показывает меню"""
     print("\n" + "=" * 30)
     print("МОИ ЗАМЕТКИ")
     print("=" * 30)
@@ -15,9 +19,10 @@ def show_menu():
     print("=" * 30)
 
 
+@log_action
 def show_all_notes():
-    """Показывает список всех заметок"""
-    if len(notes) == 0:
+    """Показывает все заметки"""
+    if not notes:
         print("\nУ вас пока нет заметок.")
         return
 
@@ -26,102 +31,88 @@ def show_all_notes():
         print(f"[{note['id']}] {note['title']}")
 
 
+@log_action
 def add_note():
-    """Добавляет новую заметку"""
+    """Добавляет заметку"""
     global next_id
 
     print("\n--- НОВАЯ ЗАМЕТКА ---")
     title = input("Заголовок: ")
     content = input("Содержание: ")
 
-    # Создаём заметку (словарь)
     note = {
         'id': next_id,
         'title': title,
         'content': content
     }
 
-    # Добавляем в список
     notes.append(note)
-    next_id = next_id + 1
+    next_id += 1
+    storage.save_notes(notes)
+    print(f"✓ Заметка добавлена!")
 
-    print(f"✓ Заметка '{title}' добавлена!")
 
-
+@log_action
 def view_note():
-    """Показывает одну заметку по ID"""
+    """Показывает одну заметку"""
     show_all_notes()
 
-    if len(notes) == 0:
+    if not notes:
         return
 
-    # Просим ввести ID
-    id_str = input("\nВведите номер заметки: ")
+    try:
+        note_id = int(input("\nВведите номер заметки: "))
 
-    # Проверяем, что ввели число
-    if not id_str.isdigit():
-        print("✗ Ошибка: нужно ввести число!")
-        return
+        for note in notes:
+            if note['id'] == note_id:
+                print(f"\nЗаголовок: {note['title']}")
+                print(f"Содержание: {note['content']}")
+                return
 
-    note_id = int(id_str)
-
-    # Ищем заметку
-    found = False
-    for note in notes:
-        if note['id'] == note_id:
-            print("\n" + "=" * 30)
-            print(f"ЗАМЕТКА №{note['id']}")
-            print(f"Заголовок: {note['title']}")
-            print("-" * 30)
-            print(f"{note['content']}")
-            print("=" * 30)
-            found = True
-            break
-
-    if not found:
-        print(f"✗ Заметка с номером {note_id} не найдена!")
+        print("Заметка не найдена!")
+    except ValueError:
+        print("Ошибка! Нужно ввести число.")
 
 
+@log_action
 def delete_note():
-    """Удаляет заметку по ID"""
     show_all_notes()
 
-    if len(notes) == 0:
+    if not notes:
         return
 
-    id_str = input("\nВведите номер заметки для удаления: ")
+    try:
+        note_id = int(input("\nВведите номер заметки для удаления: "))
 
-    if not id_str.isdigit():
-        print("✗ Ошибка: нужно ввести число!")
-        return
+        for i, note in enumerate(notes):
+            if note['id'] == note_id:
+                confirm = input(f"Удалить '{note['title']}'? (да/нет): ")
+                if confirm.lower() in ['да', 'д', 'yes', 'y']:
+                    notes.pop(i)
+                    storage.save_notes(notes)
+                    print("✓ Заметка удалена!")
+                else:
+                    print("Удаление отменено.")
+                return
 
-    note_id = int(id_str)
-
-    # Ищем и удаляем
-    for i in range(len(notes)):
-        if notes[i]['id'] == note_id:
-            title = notes[i]['title']
-
-            # Спрашиваем подтверждение
-            confirm = input(f"Удалить заметку '{title}'? (да/нет): ")
-            if confirm.lower() in ['да', 'д', 'yes', 'y']:
-                notes.pop(i)
-                print(f"✓ Заметка удалена!")
-            else:
-                print("Удаление отменено.")
-            return
-
-    print(f"✗ Заметка с номером {note_id} не найдена!")
+        print("Заметка не найдена!")
+    except ValueError:
+        print("Ошибка! Нужно ввести число.")
 
 
-# --- ГЛАВНАЯ ПРОГРАММА ---
-print("ДОБРО ПОЖАЛОВАТЬ В ПРОГРАММУ ЗАМЕТОК!")
 
-# Добавим пару примеров для теста
-notes.append({'id': next_id, 'title': 'Купить продукты', 'content': 'Молоко, хлеб, яйца'})
-next_id = next_id + 1
-notes.append({'id': next_id, 'title': 'Забрать посылку', 'content': 'Пункт выдачи до 20:00'})
-next_id = next_id + 1
+notes = storage.load_notes()
+if notes:
+    next_id = max(note['id'] for note in notes) + 1
+    print(f"Загружено {len(notes)} заметок")
+else:
+    # Добавляем примеры для первого запуска
+    notes = [
+        {'id': 1, 'title': 'Купить продукты', 'content': 'Молоко, хлеб'},
+        {'id': 2, 'title': 'Позвонить маме', 'content': 'Вечером'}
+    ]
+    next_id = 3
+    storage.save_notes(notes)
 
 while True:
     show_menu()
@@ -139,6 +130,8 @@ while True:
         print("До свидания!")
         break
     else:
-        print("✗ Неверный выбор. Попробуйте снова.")
+        print("Неверный выбор!")
 
-    input("\nНажмите Enter, чтобы продолжить...")
+    utils.pause()
+    utils.clear_screen()
+    
