@@ -100,18 +100,12 @@ def delete_note():
         print("Ошибка! Нужно ввести число.")
 
 
-
 notes = storage.load_notes()
 if notes:
     next_id = max(note['id'] for note in notes) + 1
     print(f"Загружено {len(notes)} заметок")
 else:
-    # Добавляем примеры для первого запуска
-    notes = [
-        {'id': 1, 'title': 'Купить продукты', 'content': 'Молоко, хлеб'},
-        {'id': 2, 'title': 'Позвонить маме', 'content': 'Вечером'}
-    ]
-    next_id = 3
+    notes = []
     storage.save_notes(notes)
 
 while True:
@@ -134,4 +128,3 @@ while True:
 
     utils.pause()
     utils.clear_screen()
-    

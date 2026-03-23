@@ -3,6 +3,7 @@ def clear_screen():
     import os
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 def pause():
     """Ждет нажатия Enter"""
     input("Нажмите Enter чтобы продолжить...")
