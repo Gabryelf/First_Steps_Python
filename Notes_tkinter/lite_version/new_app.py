@@ -4,40 +4,10 @@ from tkinter import scrolledtext, messagebox, simpledialog
 
 
 notes = load_notes()
-next_id = 1
-
-
-def view_note():
-    selection = listbox.curselection()
-
-    if not selection:
-        messagebox.showwarning("Внимание", "Сначала выберите заметку!")
-        return
-
-    selected_text = listbox.get(selection[0])
-
-    note_id = int(selected_text.split(']')[0].strip('['))
-
-    for note in notes:
-        if note['id'] == note_id:
-            # Создаем новое окно
-            view_window = tk.Toplevel(root)
-            view_window.title(f"Заметка: {note['title']}")
-            view_window.geometry("400x300")
-
-            # Текстовое поле с прокруткой
-            text_area = scrolledtext.ScrolledText(view_window, wrap=tk.WORD)
-            text_area.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-            text_area.insert(tk.END, f"Заголовок: {note['title']}\n\n{note['content']}")
-            text_area.config(state=tk.DISABLED)  # Запрещаем редактирование
-
-            tk.Button(view_window, text="Закрыть", command=view_window.destroy).pack(pady=5)
-            break
 
 
 def show_all_notes():
     listbox.delete(0, tk.END)
-
     if not notes:
         listbox.insert(tk.END, "--- У вас пока нет заметок ---")
     else:
@@ -46,16 +16,13 @@ def show_all_notes():
 
 
 def add_note():
-    global next_id
-
+    next_id = len(notes) + 1
     title = simpledialog.askstring("Новая заметка", "Заголовок:")
     if not title:
         return
-
     content = simpledialog.askstring("Новая заметка", "Содержание:")
     if content is None:
         return
-
     note = {
         'id': next_id,
         'title': title,
@@ -63,30 +30,46 @@ def add_note():
     }
 
     notes.append(note)
-    next_id += 1
     save_notes(notes)
     show_all_notes()
     messagebox.showinfo("Успех", "✓ Заметка добавлена!")
 
 
-def delete_note():
-    global next_id
+def view_note():
     selection = listbox.curselection()
+
     if not selection:
         messagebox.showwarning("Внимание", "Сначала выберите заметку!")
-        return
 
     selected_text = listbox.get(selection[0])
-
     note_id = int(selected_text.split(']')[0].strip('['))
 
     for note in notes:
         if note['id'] == note_id:
-            # Диалог подтверждения
+            view_window = tk.Toplevel(root)
+            view_window.title(f"Заметка: {note['title']}")
+            view_window.geometry("400x300")
+
+            text_area = scrolledtext.ScrolledText(view_window, wrap=tk.WORD)
+            text_area.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+            text_area.insert(tk.END, f"Заголовок: {note['title']}\n\n{note['content']}")
+            text_area.config(state=tk.DISABLED)
+
+            tk.Button(view_window, text="Закрыть", command=view_window.destroy).pack(pady=5)
+            break
+
+
+def delete_note():
+    selection = listbox.curselection()
+
+    selected_text = listbox.get(selection[0])
+    note_id = int(selected_text.split(']')[0].strip('['))
+
+    for note in notes:
+        if note['id'] == note_id:
             if messagebox.askyesno("Подтверждение", f"Удалить '{note['title']}'?"):
                 notes.pop(note_id - 1)
                 save_notes(notes)
-                next_id -= 1
                 show_all_notes()
                 messagebox.showinfo("Успех", "✓ Заметка удалена!")
             break
