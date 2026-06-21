@@ -1,0 +1,73 @@
+# server/docker/docker-compose.yml
+version: '3.8'
+
+services:
+  # MySQL база данных
+  mysql:
+    image: mysql:8.0
+    container_name: itd_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: idle_tower_defense
+      MYSQL_USER: game_user
+      MYSQL_PASSWORD: game_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - game_network
+
+  # Redis для кэширования и сессий
+  redis:
+    image: redis:7-alpine
+    container_name: itd_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - game_network
+
+  # FastAPI сервер
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.api
+    container_name: itd_api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://game_user:game_password@mysql:3306/idle_tower_defense
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=your-super-secret-jwt-key
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - game_network
+    volumes:
+      - ../src:/app/src
+
+  # WebSocket сервер для реального времени
+  websocket:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.websocket
+    container_name: itd_websocket
+    ports:
+      - "8001:8001"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - API_URL=http://api:8000
+    depends_on:
+      - redis
+      - api
+    networks:
+      - game_network
+
+volumes:
+  mysql_data:
+
+networks:
+  game_network:
+    driver: bridge

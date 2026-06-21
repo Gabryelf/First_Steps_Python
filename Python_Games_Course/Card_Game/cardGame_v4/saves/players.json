@@ -1,0 +1,38 @@
+{
+  "Gaby": {
+    "player_name": "Gaby",
+    "created_at": "2025-10-05 23:51:57.092741",
+    "active_hero": "Ivor",
+    "statistics": {
+      "games_played": 0,
+      "games_won": 0,
+      "total_enemies_defeated": 0,
+      "total_gold_earned": 0,
+      "highest_level_reached": 0
+    }
+  },
+  "Мастер": {
+    "player_name": "Мастер",
+    "created_at": "2025-10-06 00:01:32.813179",
+    "active_hero": "Жоски",
+    "statistics": {
+      "games_played": 0,
+      "games_won": 0,
+      "total_enemies_defeated": 0,
+      "total_gold_earned": 0,
+      "highest_level_reached": 0
+    }
+  },
+  "1": {
+    "player_name": "1",
+    "created_at": "2025-10-06 00:23:54.979613",
+    "active_hero": "1",
+    "statistics": {
+      "games_played": 0,
+      "games_won": 0,
+      "total_enemies_defeated": 0,
+      "total_gold_earned": 0,
+      "highest_level_reached": 0
+    }
+  }
+}

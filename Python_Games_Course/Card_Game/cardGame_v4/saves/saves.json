@@ -1,0 +1,200 @@
+{
+  "Gaby_Ivor": {
+    "player_name": "Gaby",
+    "hero_name": "Ivor",
+    "hero_data": {
+      "name": "Ivor",
+      "hero_class": "Лучник",
+      "level": 1,
+      "experience": 80,
+      "gold": 35,
+      "max_health": 100,
+      "current_health": 100,
+      "permanent_upgrades": {
+        "extra_damage": 3
+      },
+      "inventory": [
+        {
+          "name": "Зелье здоровья",
+          "description": "Восстанавливает 30 здоровья",
+          "value": 25,
+          "consumable": true
+        }
+      ]
+    },
+    "game_state": {
+      "current_floor": 3,
+      "enemies_defeated": 2,
+      "game_over": false,
+      "is_player_turn": true,
+      "hero_data": {
+        "name": "Ivor",
+        "hero_class": "Лучник",
+        "level": 1,
+        "experience": 80,
+        "gold": 35,
+        "max_health": 100,
+        "current_health": 100,
+        "permanent_upgrades": {
+          "extra_damage": 3
+        },
+        "inventory": [
+          {
+            "name": "Зелье здоровья",
+            "description": "Восстанавливает 30 здоровья",
+            "value": 25,
+            "consumable": true
+          }
+        ]
+      }
+    },
+    "last_saved": "2025-10-05T23:52:31.183690",
+    "level": 1
+  },
+  "Мастер_Жоски": {
+    "player_name": "Мастер",
+    "hero_name": "Жоски",
+    "hero_data": {
+      "name": "Жоски",
+      "hero_class": "Лучник",
+      "level": 1,
+      "experience": 80,
+      "gold": 35,
+      "max_health": 100,
+      "current_health": 88,
+      "permanent_upgrades": {
+        "extra_damage": 3
+      },
+      "inventory": [
+        {
+          "name": "Зелье здоровья",
+          "description": "Восстанавливает 30 здоровья",
+          "value": 25,
+          "consumable": true
+        }
+      ]
+    },
+    "game_state": {
+      "current_floor": 3,
+      "enemies_defeated": 2,
+      "game_over": false,
+      "is_player_turn": false,
+      "hero_data": {
+        "name": "Жоски",
+        "hero_class": "Лучник",
+        "level": 1,
+        "experience": 80,
+        "gold": 35,
+        "max_health": 100,
+        "current_health": 88,
+        "permanent_upgrades": {
+          "extra_damage": 3
+        },
+        "inventory": [
+          {
+            "name": "Зелье здоровья",
+            "description": "Восстанавливает 30 здоровья",
+            "value": 25,
+            "consumable": true
+          }
+        ]
+      }
+    },
+    "last_saved": "2025-10-06T00:02:13.530543",
+    "level": 1
+  },
+  "1_1": {
+    "player_name": "1",
+    "hero_name": "1",
+    "hero_data": {
+      "name": "1",
+      "hero_class": "Воин",
+      "level": 1,
+      "experience": 0,
+      "gold": 50,
+      "max_health": 120,
+      "current_health": 120,
+      "permanent_upgrades": {
+        "extra_health": 20
+      },
+      "inventory": [
+        {
+          "name": "Зелье здоровья",
+          "description": "Восстанавливает 30 здоровья",
+          "value": 25,
+          "item_type": "potion",
+          "consumable": true,
+          "equipped": false
+        },
+        {
+          "name": "Зелье здоровья",
+          "description": "Восстанавливает 30 здоровья",
+          "value": 25,
+          "item_type": "potion",
+          "consumable": true,
+          "equipped": false
+        },
+        {
+          "name": "Зелье здоровья",
+          "description": "Восстанавливает 30 здоровья",
+          "value": 25,
+          "item_type": "potion",
+          "consumable": true,
+          "equipped": false
+        }
+      ],
+      "equipped_weapon": null,
+      "equipped_armor": null,
+      "equipped_relic": null
+    },
+    "game_state": {
+      "current_floor": 1,
+      "enemies_defeated": 0,
+      "game_over": false,
+      "is_player_turn": true,
+      "hero_data": {
+        "name": "1",
+        "hero_class": "Воин",
+        "level": 1,
+        "experience": 0,
+        "gold": 50,
+        "max_health": 120,
+        "current_health": 120,
+        "permanent_upgrades": {
+          "extra_health": 20
+        },
+        "inventory": [
+          {
+            "name": "Зелье здоровья",
+            "description": "Восстанавливает 30 здоровья",
+            "value": 25,
+            "item_type": "potion",
+            "consumable": true,
+            "equipped": false
+          },
+          {
+            "name": "Зелье здоровья",
+            "description": "Восстанавливает 30 здоровья",
+            "value": 25,
+            "item_type": "potion",
+            "consumable": true,
+            "equipped": false
+          },
+          {
+            "name": "Зелье здоровья",
+            "description": "Восстанавливает 30 здоровья",
+            "value": 25,
+            "item_type": "potion",
+            "consumable": true,
+            "equipped": false
+          }
+        ],
+        "equipped_weapon": null,
+        "equipped_armor": null,
+        "equipped_relic": null
+      }
+    },
+    "last_saved": "2025-10-06T07:23:39.142986",
+    "level": 1
+  }
+}

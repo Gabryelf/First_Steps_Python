@@ -1,0 +1,20 @@
+# server/docker/docker-compose.prod.yml
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped  # 🔄 Автоперезапуск
+
+  api:
+    build: .
+    ports:
+      - "80:8000"  # 📍 Стандартный HTTP порт
+    environment:
+      - DATABASE_URL=mysql://user:${DB_PASSWORD}@mysql:3306/game
+    restart: unless-stopped
+    depends_on:
+      - mysql

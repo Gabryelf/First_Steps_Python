@@ -1,0 +1,3 @@
+psycopg2-binary==2.9.6
+mysql-connector-python==8.0.33
+pymongo==4.4.1
